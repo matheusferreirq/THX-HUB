@@ -4,15 +4,17 @@
 <img src="/assets/inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0">
 </p>
 
-# Nome do projeto
-[NOME DO PROJETO]
+# THX HUB
 
-## Autor do projeto
-[NOME DO AUTOR]
+## Matheus Ferreira da Silva
 
 ## 📝 Descrição
 
-[DESCRIÇÃO DO PROJETO E DA SOLUÇÃO DESENVOLVIDA. DETALHE O PROBLEMA QUE ESTÁ SENDO ABORDADO E COMO A SOLUÇÃO PROPOSTA VISA MITIGÁ-LO OU RESOLVÊ-LO. EXPLIQUE AS PRINCIPAIS FUNCIONALIDADES E O OBJETIVO GERAL DO PROJETO.]
+O THX Hub é uma plataforma web criada para facilitar a organização de resenhas — festas informais realizadas em casa ou no condomínio. A solução surgiu da necessidade de centralizar o controle de convidados, inscrições e informações do evento de forma prática e eficiente.
+
+Com uma interface simples, a plataforma permite criar eventos, gerar links de inscrição, limitar participantes, editar dados e acompanhar confirmações em tempo real. Também é possível adicionar colaboradores para ajudar na organização e classificar convidados com selos personalizados, tornando a experiência mais divertida e engajada.
+
+O projeto tem como objetivo transformar festas caseiras em eventos organizados, colaborativos e inesquecíveis.
 
 
 ## 📝 Link de demonstração

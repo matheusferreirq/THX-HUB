@@ -1,10 +1,15 @@
 # Inteli - Instituto de Tecnologia e Liderança
 
 <p align="center">
-<img src="/assets/inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0">
+<img src="/assets/wad/inteli.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0">
 </p>
 
-# THX HUB
+# <div align=center>**THX HUB**<div/>
+<div align="center">
+
+   <img src="assets/wad/THXHUB_LOGO.png" width="40%" 
+   alt="Título"><br>
+ </div>
 
 ## Matheus Ferreira da Silva
 
@@ -25,63 +30,67 @@ _Coloque aqui o link para seu projeto publicado e link para vídeo de demonstra�
 
 Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
-- <b>assets</b>: aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como imagens.
-    - <b>[NOME DA SUBPASTA DE ASSETS, SE HOUVER]</b>: [DESCRIÇÃO DO CONTEÚDO DA SUBPASTA].
+- **assets/:** aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como imagens.
+- **config/:** Arquivos relacionados à configuração do projeto.
+- **controllers/:** Lógica de controle das requisições da aplicação.
+- **documentos/:** Documentos do projeto, como o Web Application  Document (WAD).
+- **models/:** Definições dos modelos de dados utilizados na aplicação.
+- **routes/:** Definição as rotas da aplicação.
+- **scripts/:** Arquivos de JavaScript públicos.
+- **services/:** Serviços auxiliares da aplicação.
+- **tests/:** Arquivos de testes unitários.
+- **views/:** Views da aplicação web.
+- **.env.example:** Arquivo de exemplo para as variáveis de ambiente.
+- **.gitignore:** Arquivo que especifica arquivos e diretórios que o Git deve ignorar.
+- **jest.config.js:** Arquivo de configuração para o framework de testes Jest.
+- **package.json:** Informações sobre o projeto e suas dependências.
+- **README .md:** Arquivo que serve como guia introdutório e explicação geral sobre o projeto e a aplicação (o mesmo arquivo que você está lendo agora).
+- **rest.http:**
+- **server.js:** Arquivo principal que inicializa o servidor da aplicação.
 
-- <b>document</b>: aqui estão todos os documentos do projeto, como o Web Application  Document (WAD) bem como documentos complementares, na pasta "other".
-
-- <b>src</b>: Todo o código fonte criado para o desenvolvimento do projeto de aplicação web.
-
-- <b>README.md</b>: arquivo que serve como guia introdutório e explicação geral sobre o projeto e a aplicação (o mesmo arquivo que você está lendo agora).
-
-## 💻 Configuração para desenvolvimento e execução do código
-
-*Acrescentar as informações necessárias sobre pré-requisitos (IDEs, bibliotecas, serviços etc.) e instalação básica do projeto, descrevendo eventuais versões utilizadas. Colocar um passo a passo de como o leitor pode baixar o código e executar a aplicação a partir de sua máquina local.*
-
-*exemplo de instruções*
+## 💻 Como inicializar o projeto
 
 Aqui encontram-se todas as instruções necessárias para a instalação de todos os programas, bibliotecas e ferramentas imprescindíveis para a configuração do ambiente de desenvolvimento.
-
-1. Baixar e instalar o node.js: [https://nodejs.org/pt-br/](https://nodejs.org/pt-br/) (versão 16.15.1 LTS)
-2. Clone o repositório em questão.
-3. No modo administrador, abra o "prompt de comando" ou o "terminal" e, após, abra a pasta "src/backend" no diretório raiz do repositório clonado e digite o segundo comando:
-
-```sh
-npm install
-```
-
-Isso instalará todas as dependências definidas no arquivo <b>package.json</b> que são necessárias para rodar o projeto. Agora o projeto já está pronto para ser modificado. Caso ainda deseje iniciar a aplicação, digite o comando abaixo no terminal:
-
-```sh
-npm start
-```
-5. Agora você pode acessar a aplicação através do link http://localhost:1234/
-6. O servidor está online.
+1. Clone o repositório:
+    ```sh
+    git clone <URL_DO_REPOSITORIO>
+    ```
+2. Navegue até o diretório do projeto:
+    ```sh
+    cd nome-do-projeto
+    ```
+3. No "terminal", digite este comando para instalar as dependências definidas no arquivo <b>package.json</b> que são necessárias para rodar o projeto.
+    ```sh
+    npm install
+    ```
+4. Para inicializar o servidor, digite um dos seguintes comandos:
+    ```sh
+    node server.js
+    ```
+    ```sh
+    npm run start
+    ```
+5. Para realizar a migração, digite um dos seguintes comandos:
+    ```sh
+    node scripts/runSQLScript.js
+    ```
+    ```sh
+    npm run migrations
+    ```
 
 ## 🗃 Histórico de lançamentos
 
-* 0.5.0 - XX/XX/2024
+* 0.5.0 - XX/XX/2025
     * 
-* 0.4.0 - XX/XX/2024
+* 0.4.0 - XX/XX/2025
     * 
-* 0.3.0 - XX/XX/2024
+* 0.3.0 - XX/XX/2025
     * 
-* 0.2.0 - XX/XX/2024
+* 0.2.0 - XX/XX/2025
     * 
-* 0.1.0 - 02/05/2025 : Entrega da sprint 1
-    - Introdução Seção 1
-    - Matriz de Riscos
-    - Análise SWOT
-    - Personas
-    - User Stories
-    - 5 Forças de Porter
-    *
+* 0.1.0 - 09/05/2025
+    * Atualização do read.me
+    * Introdução (seção 1 do WAD)
+    * Diagrama do banco de dados
+    * Estruturação do projeto e adição do modelo físico
 
-## 📋 Licença/License
-```
-Alunos inteli (remover essa observação do readme.md após leitura e execução, junto com o link para o tutorial):
-
-1. Siga o tutorial para criação da licença: https://drive.google.com/file/d/1hXWLHUhjBkPVuGqeE2LZKozFntnJZzlx/view
-```
-
-<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><a property="dct:title" rel="cc:attributionURL" href="https://github.com/Intelihub/Template_M2/">MODELO GIT INTELI</a> by <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://www.yggbrasil.com.br/vr">Inteli, André Katz, Caroline Paz, Humberto Castro, Isabela Szolnoky Ferreira Cabral Souza da Conceição, Luiz Oliveira, Maria Eduada Barbosa Oliveira, Matheus Ferreira da Silva</a> is licensed under <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">Attribution 4.0 International</a>.</p>

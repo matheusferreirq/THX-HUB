@@ -1,5 +1,5 @@
 # Teste da rota GET /users
-GET http://localhost:3000/users
+GET http://localhost:3000
 Accept: application/json
 
 ###

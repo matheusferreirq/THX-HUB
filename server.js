@@ -1,15 +1,19 @@
 const express = require('express');
+const db = require('./config/db');
+require('dotenv').config();
+
 const app = express();
-const PORT = 3000;
 
-// Middleware para processar JSON
-app.use(express.json());
+app.get('/', async (req, res) => {
+  try {
+    const result = await db.query('SELECT NOW()');
+    res.send(`Hora atual no banco: ${result.rows[0].now}`);
+  } catch (err) {
+    res.status(500).send('Erro ao conectar com o banco.');
+  }
+});
 
-// Rotas
-const routes = require('./routes/index');
-app.use('/', routes);
-
-// Inicializa o servidor
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

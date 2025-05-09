@@ -41,9 +41,29 @@ Dessa forma, o THX Hub permite que você, anfitrião, transforme a tradicional f
 
 ### 3.1. Modelagem do banco de dados  (Semana 3)
 
-*Posicione aqui os diagramas de modelos relacionais do seu banco de dados, apresentando todos os esquemas de tabelas e suas relações. Utilize texto para complementar suas explicações, se necessário.*
+Nesta seção (3.1), serão apresentadas a modelagem lógica do banco de dados envolvendo o projeto e a explicação de suas  entidades e respectivas relações.
 
-*Posicione também o modelo físico com o Schema do BD (arquivo .sql)*
+Nesse sentido, a modelagem lógica é o planejamento essencial de uma aplicação web, definindo seus principais elementos (dados, funcionalidades e regras) e suas interconexões, servindo como base para o desenvolvimento e garantindo um sistema bem estruturado e compreendido por todos. Assim, A arquitetura do banco de dados do THX Hub foi pensada para simplificar o gerenciamento de eventos, mapeando elementos e interações cruciais.
+
+<div align="center">
+   <sub>Imagem 1: Modelo lógico do banco de dados</sub><br>
+   <img src="../assets/wad/modelo_conceitual.png" width="100%" 
+   alt="Título"><br>
+   <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
+ </div>
+
+O sistema é composto por cinco tabelas principais: usuarios, eventos, organizadores_eventos, convidados_evento e inscricoes. A seguir, descrevemos como essas entidades se relacionam entre si.
+
+**1. Usuários e Eventos**
+A relação entre usuários e eventos no papel de organizadores é feita por meio da tabela *organizadores_eventos*. Essa tabela representa uma relação N para N, na qual um usuário pode organizar vários eventos e um evento pode ter mais de um organizador. Além disso, a tabela inclui um campo chamado `papel`, que permite registrar qual é o tipo de participação do organizador.
+
+**2. Usuários e Eventos (relação de convite)**
+A relação entre usuários e eventos no papel de convidados é registrada na tabela *convidados_evento*. Também é uma relação N para N, já que um usuário pode ser convidado para vários eventos e um evento pode ter vários convidados. Nessa tabela, há o campo `confirmado`, que indica se o convidado aceitou o convite, e o campo `data_confirmacao`, que registra quando isso ocorreu. Essa tabela permite que o organizador gerencie a lista de convidados.
+
+**3. Usuários e Eventos (relação de inscrição e check-in)**
+A tabela *inscricoes* representa as confirmações de presença dos convidados nos eventos. Ela também estabelece uma relação N para N entre usuários e eventos. Nela, o campo `codigo_inscricao` armazena um identificador único que pode ser enviado ao convidado para confirmação de presença (por exemplo, por e-mail ou QR Code). Os campos `checkin_realizado` e `data_checkin` são usados para registrar se o convidado de fato compareceu ao evento e quando foi feito o check-in.
+
+Para acessar o modelo físico, [acesse o link aqui](https://github.com/matheusferreirq/THX-HUB/blob/main/scripts/init.sql).
 
 ### 3.1.1 BD e Models (Semana 5)
 *Descreva aqui os Models implementados no sistema web*

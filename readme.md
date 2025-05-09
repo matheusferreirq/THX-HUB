@@ -6,8 +6,7 @@
 
 # <div align=center>**THX HUB**<div/>
 <div align="center">
-
-   <img src="assets/wad/THXHUB_LOGO.png" width="40%" 
+   <img src="assets/wad/THXHUBLOGO.png" width="40%" 
    alt="Título"><br>
  </div>
 

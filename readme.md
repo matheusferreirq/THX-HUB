@@ -10,7 +10,7 @@
 
 ## 📝 Descrição
 
-O THX Hub é uma plataforma web criada para facilitar a organização de resenhas — festas informais realizadas em casa ou no condomínio. A solução surgiu da necessidade de centralizar o controle de convidados, inscrições e informações do evento de forma prática e eficiente.
+O THX Hub é uma plataforma web criada para facilitar a organização de resenhas, festas informais realizadas em casa ou no condomínio. A solução surgiu da necessidade de centralizar o controle de convidados, inscrições e informações do evento de forma prática e eficiente.
 
 Com uma interface simples, a plataforma permite criar eventos, gerar links de inscrição, limitar participantes, editar dados e acompanhar confirmações em tempo real. Também é possível adicionar colaboradores para ajudar na organização e classificar convidados com selos personalizados, tornando a experiência mais divertida e engajada.
 

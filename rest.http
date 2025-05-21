@@ -1,5 +1,5 @@
 # Teste da rota GET /users
-GET http://localhost:3000
+GET http://localhost:3000/users
 Accept: application/json
 
 ###
@@ -11,12 +11,13 @@ Accept: application/json
 ###
 
 # Teste da rota POST /users
-POST http://localhost:3000/users
+POST http://localhost:3000/usuarios
 Content-Type: application/json
 
 {
-  "name": "John Doe",
-  "email": "john@example.com"
+  "nome": "John Doe",
+  "email": "john@example.com",
+  "senha": "12345"
 }
 
 ###
@@ -33,5 +34,5 @@ Content-Type: application/json
 ###
 
 # Teste da rota DELETE /users/:id
-DELETE http://localhost:3000/users/39602f41-b43e-4fa8-b7f7-34c7a516740b
+DELETE http://localhost:3000/usuarios/3
 Accept: application/json

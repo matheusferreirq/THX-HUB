@@ -1,19 +1,37 @@
-const UsuarioModel = require('../models/userModel');
+const userRepository = require('../repositories/userRepository');
 
-const getAllUsers = () => UsuarioModel.findAll();
+class userService {
+  getAll() {
+    return userRepository.findAll();
+  }
 
-const getUserById = (id) => UsuarioModel.findById(id);
+  getById(id) {
+    return userRepository.findById(id)
+  }
 
-const createUser = (data) => UsuarioModel.create(data);
+  create(data) {
+    return userRepository.create(data);
+  }
 
-const updateUser = (id, data) => UsuarioModel.update(id, data);
+  updateNome(id, nome) {
+    return userRepository.updateNome(id, nome);
+  }
 
-const deleteUser = (id) => UsuarioModel.delete(id);
+  updateSenha(id, senha) {
+    return userRepository.updateSenha(id, senha);
+  }
 
-module.exports = {
-  getAllUsers,
-  getUserById,
-  createUser,
-  updateUser,
-  deleteUser
-};
+  updateEmail(id, email) {
+    return userRepository.updateEmail(id, email);
+  }
+
+  updateApelido(id, apelido_eventual) {
+    return userRepository.updateApelido(id, apelido_eventual);
+  }
+
+  delete(id) {
+    return userRepository.delete(id)
+  }
+}
+
+module.exports = new userService();

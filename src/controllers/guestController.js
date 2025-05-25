@@ -33,7 +33,7 @@ const confirmAttendence = async (req, res) => {
 const removeGuest = async (req, res) => {
     const { id_convidado, id_evento } = req.params;
     await guestService.removeGuest(id_convidado, id_evento);
-    res.status(204).send();;
+    res.status(204).send();
 }
 
 module.exports = {

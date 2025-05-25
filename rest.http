@@ -162,3 +162,23 @@ Accept: application/json
 
 ###
 
+### GET - Todas as mensagens de um evento
+GET http://localhost:3000/eventos/3/mensagens
+Accept: application/json
+
+###
+
+### POST - Nova mensagem em um evento
+POST http://localhost:3000/eventos/3/mensagens
+Content-Type: application/json
+
+{
+  "id_usuario": 4,
+  "conteudo": "Vai ser top!"
+}
+
+###
+
+### DELETE - Remover uma mensagem
+DELETE http://localhost:3000/eventos/3/mensagens/5
+Accept: application/json

@@ -5,7 +5,7 @@ Accept: application/json
 ###
 
 # Teste da rota GET /eventos/:id
-GET http://localhost:3000/eventos/1
+GET http://localhost:3000/eventos/2
 Accept: application/json
 
 ###
@@ -15,9 +15,9 @@ POST http://localhost:3000/eventos
 Content-Type: application/json
 
 {
-  "titulo": "HP da Stef",
-  "descricao": "Festa a fantasia muito top",
-  "local": "Casa da Stef",
+  "titulo": "HP NO THEUS",
+  "descricao": "Fresenha basica",
+  "local": "Casa do theus",
   "data_hora_inicio": "20:00",
   "data_hora_fim": "07:00",
   "limite_convidados": "500"
@@ -26,13 +26,13 @@ Content-Type: application/json
 ###
 
 # Teste da rota PUT /eventos/:id
-PUT http://localhost:3000/eventos/1
+PUT http://localhost:3000/eventos/3
 Content-Type: application/json
 
 {
-  "titulo": "HP da Stef",
-  "descricao": "Festa a fantasia muito top",
-  "local": "Casa da Stef",
+  "titulo": "HP NO THEUS",
+  "descricao": "Resenha basica",
+  "local": "Casa do theus",
   "data_hora_inicio": "20:00",
   "data_hora_fim": "07:00",
   "limite_convidados": "500"
@@ -41,9 +41,8 @@ Content-Type: application/json
 ###
 
 # Teste da rota DELETE /eventos/:id
-DELETE http://localhost:3000/eventos/1
+DELETE http://localhost:3000/eventos/4
 Accept: application/json
-
 
 ###
 

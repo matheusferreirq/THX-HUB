@@ -1,19 +1,25 @@
-const EventModel = require('../models/eventModel');
+const eventosRepository = require('../repositories/eventRepository')
 
-const getAllEvents = () => EventModel.findAll();
+class EventoService {
+    getAll() {
+        return eventosRepository.findAll();
+    };
 
-const getEventById = (id) => EventModel.findById(id);
+    getById(id) {
+        return eventosRepository.findById(id);
+    }
 
-const createEvent = (data) => EventModel.create(data);
+    create(data) {
+        return eventosRepository.create(data);
+    }
 
-const updateEvent = (id, data) => EventModel.update(id, data);
+    update(id, data) {
+        return eventosRepository.update(id,data);
+    }
 
-const deleteEvent = (id) => EventModel.delete(id)
+    delete(id) {
+        return eventosRepository.delete(id)
+    }
+}
 
-module.exports = {
-    getAllEvents,
-    getEventById,
-    createEvent,
-    updateEvent,
-    deleteEvent
-};
+module.exports = new EventoService();

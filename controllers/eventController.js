@@ -1,38 +1,38 @@
 const eventService = require('../services/eventService');
 
 const getAll = async (req, res) => {
-    const eventos = await eventService.getAllEvents();
-    res.json(eventos);
+    const events = await eventService.getAll();
+    res.json(events);
 };
 
 const getById = async (req, res) => {
     const { id } = req.params;
-    const evento = await eventService.getEventById(id);
-    if (evento) res.json(evento);
-    else res.status(404).json({message: 'Evento não encontrado'});
+    const event = await eventService.getById(id);
+    if (event) res.json(event);
+    else res.status(404).json( {message: 'Evento não encontrado'});
 };
 
 const create = async (req, res) => {
-    const evento = await eventService.createEvent(req.body);
-    res.status(201).json(evento);
-};
+    const event = await eventService.create(req.body);
+    res.status(201).json(event)
+}
 
 const update = async (req, res) => {
     const { id } = req.params;
-    const evento = await eventService.updateEvent(id, req.body);
-    res.json(evento)
-};
+    const event = await eventService.update(id, req.body);
+    res.json(event);
+}
 
 const remove = async (req, res) => {
-  const { id } = req.params;
-  const evento = await eventService.deleteEvent(id);
-  res.json(evento);
-};
+    const { id } = req.params;
+    await eventService.delete(id);
+    res.status(204).send();
+}
 
-module.exports = {
+module.exports = { 
     getAll,
-    getById,
-    create,
-    update,
+    getById, 
+    create, 
+    update, 
     remove
-};
+}

@@ -1,7 +1,7 @@
 const db = require('../config/db');
 const Usuarios = require('../models/userModel')
 
-class userRepository {
+class UserRepository {
     async findAll() {
         const result = await db.query('SELECT * FROM usuarios');
         return result.rows.map(row => new Usuarios(row));
@@ -63,4 +63,4 @@ class userRepository {
     }
 }
 
-module.exports = new userRepository();
+module.exports = new UserRepository();

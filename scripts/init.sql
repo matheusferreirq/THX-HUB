@@ -11,8 +11,8 @@ CREATE TABLE IF NOT EXISTS eventos (
   titulo VARCHAR(50) NOT NULL,
   descricao TEXT,
   local TEXT NOT NULL,
-  data_hora_inicio TIME NOT NULL,
-  data_hora_fim TIME NOT NULL,
+  data_hora_inicio TIMESTAMP NOT NULL,
+  data_hora_fim TIMESTAMP NOT NULL,
   limite_convidados INTEGER NOT NULL 
 );
 
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS organizadores_eventos (
 CREATE TABLE IF NOT EXISTS convidados_evento (
   id SERIAL PRIMARY KEY,
   confirmado BOOLEAN DEFAULT FALSE,
-  data_confirmacao TIME,
+  data_confirmacao TIMESTAMP,
   id_evento INT,
   id_convidado INT,
   FOREIGN KEY (id_evento) REFERENCES eventos(id),
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS inscricoes (
   id SERIAL PRIMARY KEY,
   codigo_inscricao TEXT,
   checkin_realizado BOOLEAN DEFAULT FALSE,
-  data_checkin TIME,
+  data_checkin TIMESTAMP,
   id_evento INT,
   id_convidado INT,
   FOREIGN KEY (id_evento) REFERENCES eventos(id),

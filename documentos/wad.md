@@ -67,7 +67,60 @@ Por fim, a tabela *mensagens_evento* está relacionada a eventos e usuários, pe
 Para acessar o modelo físico, [acesse o link aqui](https://github.com/matheusferreirq/THX-HUB/blob/main/scripts/init.sql).
 
 ### 3.1.1 BD e Models (Semana 5)
-*Descreva aqui os Models implementados no sistema web*
+
+#### Usuários (`Usuarios`)
+Representa os usuários da plataforma, que podem ser anfitriões, organizadores ou convidados em eventos. Cada usuário possui os seguintes atributos:
+- `id`: Identificador único do usuário (gerado automaticamente).
+- `nome`: Nome completo do usuário.
+- `email`: Endereço de e-mail para login e comunicação.
+- `senha`: Senha criptografada para autenticação.
+- `apelido_eventual`: Apelido ou nome informal opcional que o usuário pode usar.
+
+---
+
+#### Eventos (`Eventos`)
+Modela os eventos criados na plataforma, que podem ser festas ou resenhas. Os principais atributos são:
+- `id`: Identificador único do evento.
+- `titulo`: Nome do evento.
+- `descricao`: Descrição detalhada do evento.
+- `local`: Local onde o evento será realizado.
+- `data_hora_inicio`: Data e hora de início do evento.
+- `data_hora_fim`: Data e hora de término do evento.
+- `limite_convidados`: Quantidade máxima de convidados permitidos.
+
+---
+
+#### Organizadores (`Organizadores`)
+Representa o vínculo entre usuários e eventos no papel de organizadores. Cada registro indica que um usuário organiza um evento com um determinado papel:
+- `id`: Identificador único da associação.
+- `papel`: Papel ou função do organizador no evento (ex: anfitrião, colaborador).
+- `id_usuario`: Referência ao usuário organizador.
+- `id_evento`: Referência ao evento organizado.
+
+---
+
+#### Convidados (`Convidados`)
+Modela a participação dos usuários como convidados em eventos, incluindo o status da confirmação:
+- `id`: Identificador único da associação.
+- `confirmado`: Booleano que indica se o convite foi aceito.
+- `data_confirmacao`: Data e hora em que o convite foi confirmado.
+- `id_evento`: Referência ao evento.
+- `id_convidado`: Referência ao usuário convidado.
+
+---
+
+#### Mensagens (`Mensagens`)
+Representa as mensagens enviadas por usuários dentro de eventos, permitindo a comunicação entre participantes:
+- `id`: Identificador único da mensagem.
+- `id_evento`: Referência ao evento onde a mensagem foi enviada.
+- `id_usuario`: Referência ao usuário que enviou a mensagem (pode ser nulo se o usuário for removido).
+- `conteudo`: Texto da mensagem.
+- `data_envio`: Data e hora do envio da mensagem.
+
+---
+
+Essa estrutura modular facilita a gestão dos dados, assegurando a clara separação entre entidades e seus relacionamentos na plataforma.
+
 
 ### 3.2. Arquitetura (Semana 5)
 

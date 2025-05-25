@@ -35,14 +35,11 @@ CREATE TABLE IF NOT EXISTS convidados_evento (
   FOREIGN KEY (id_convidado) REFERENCES usuarios(id)
 );
 
-CREATE TABLE IF NOT EXISTS inscricoes (
+CREATE TABLE mensagens_evento (
   id SERIAL PRIMARY KEY,
-  codigo_inscricao TEXT,
-  checkin_realizado BOOLEAN DEFAULT FALSE,
-  data_checkin TIMESTAMP,
-  id_evento INT,
-  id_convidado INT,
-  FOREIGN KEY (id_evento) REFERENCES eventos(id),
-  FOREIGN KEY (id_convidado) REFERENCES usuarios(id)
-)
+  id_evento INT NOT NULL REFERENCES eventos(id) ON DELETE CASCADE,
+  id_usuario INT REFERENCES usuarios(id) ON DELETE SET NULL,
+  conteudo TEXT NOT NULL,
+  data_envio TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 

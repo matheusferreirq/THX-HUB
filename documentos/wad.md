@@ -47,7 +47,7 @@ Nesse sentido, a modelagem lógica é o planejamento essencial de uma aplicaçã
 
 <div align="center">
    <sub>Imagem 1: Modelo lógico do banco de dados</sub><br>
-   <img src="../assets/wad/modelo_conceitual.png" width="100%" 
+   <img src="../assets/wad/modelo_relacional.png" width="100%" 
    alt="Título"><br>
    <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
  </div>
@@ -60,8 +60,9 @@ A relação entre usuários e eventos no papel de organizadores é feita por mei
 **2. Usuários e Eventos (relação de convite)**
 A relação entre usuários e eventos no papel de convidados é registrada na tabela *convidados_evento*. Também é uma relação N para N, já que um usuário pode ser convidado para vários eventos e um evento pode ter vários convidados. Nessa tabela, há o campo `confirmado`, que indica se o convidado aceitou o convite, e o campo `data_confirmacao`, que registra quando isso ocorreu. Essa tabela permite que o organizador gerencie a lista de convidados.
 
-**3. Usuários e Eventos (relação de inscrição e check-in)**
-A tabela *inscricoes* representa as confirmações de presença dos convidados nos eventos. Ela também estabelece uma relação N para N entre usuários e eventos. Nela, o campo `codigo_inscricao` armazena um identificador único que pode ser enviado ao convidado para confirmação de presença (por exemplo, por e-mail ou QR Code). Os campos `checkin_realizado` e `data_checkin` são usados para registrar se o convidado de fato compareceu ao evento e quando foi feito o check-in.
+**3. Usuários e Mensagens de Evento**
+
+Por fim, a tabela *mensagens_evento* está relacionada a eventos e usuários, permitindo que usuários enviem mensagens em eventos específicos. Cada mensagem pertence a um único evento e pode estar associada a um usuário, facilitando a comunicação dentro da plataforma e mantendo o histórico das interações nos eventos.
 
 Para acessar o modelo físico, [acesse o link aqui](https://github.com/matheusferreirq/THX-HUB/blob/main/scripts/init.sql).
 

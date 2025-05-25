@@ -26,12 +26,12 @@ Content-Type: application/json
 ###
 
 # Teste da rota PUT /eventos/:id
-PUT http://localhost:3000/eventos/3
+PUT http://localhost:3000/eventos/6
 Content-Type: application/json
 
 {
   "titulo": "HP NO THEUS",
-  "descricao": "Resenha basica",
+  "descricao": "Resenha basicaaa",
   "local": "Casa do theus",
   "data_hora_inicio": "20:00",
   "data_hora_fim": "07:00",
@@ -41,7 +41,7 @@ Content-Type: application/json
 ###
 
 # Teste da rota DELETE /eventos/:id
-DELETE http://localhost:3000/eventos/4
+DELETE http://localhost:3000/eventos/6
 Accept: application/json
 
 ###
@@ -61,7 +61,7 @@ PUT http://localhost:3000/usuarios/4/nome
 Content-Type: application/json
 
 {
-  "nome": "Matheuz"
+  "nome": "Matheus"
 }
 
 ###
@@ -71,7 +71,7 @@ PUT http://localhost:3000/usuarios/4/email
 Content-Type: application/json
 
 {
-  "email": "matheus@gmail.com"
+  "email": "matheuz@gmail.com"
 }
 
 ###
@@ -81,7 +81,7 @@ PUT http://localhost:3000/usuarios/4/apelido
 Content-Type: application/json
 
 {
-  "apelido_eventual": "ADMIN"
+  "apelido_eventual": "ADMN"
 }
 
 ###
@@ -122,7 +122,7 @@ PUT http://localhost:3000/organizadores/4/3
 Content-Type: application/json
 
 {
-  "papel": "adm"
+  "papel": "admim"
 }
 
 ### DELETE - REMOVER ORGANIZADOR

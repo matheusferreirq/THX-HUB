@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 require('dotenv').config();
-const userRoutes = require('./routes/userRoutes');
-const eventRoutes = require('./routes/eventRoutes')
-const organizerRoutes = require('./routes/organizerRoutes')
+const userRoutes = require('./src/routes/userRoutes');
+const eventRoutes = require('./src/routes/eventRoutes')
+const organizerRoutes = require('./src/routes/organizerRoutes')
 
 app.use(express.json());
 app.use('/usuarios', userRoutes);

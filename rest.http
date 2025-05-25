@@ -127,3 +127,38 @@ Content-Type: application/json
 
 ### DELETE - REMOVER ORGANIZADOR
 DELETE http://localhost:3000/organizadores/4/3
+
+### GET todos os convidados de um evento
+GET http://localhost:3000/eventos/3/convidados
+Accept: application/json
+
+###
+
+### GET todos os confirmados de um evento
+GET http://localhost:3000/eventos/3/confirmados
+Accept: application/json
+
+###
+
+### POST convidar usuário para evento
+POST http://localhost:3000/eventos/3/convidados
+Content-Type: application/json
+
+{
+  "id_convidado": 4
+}
+
+###
+
+### PUT confirmar presença do convidado no evento
+PUT http://localhost:3000/eventos/3/convidados/4/confirmar
+Accept: application/json
+
+###
+
+### DELETE remover convidado do evento
+DELETE http://localhost:3000/eventos/3/convidados/4
+Accept: application/json
+
+###
+

@@ -95,3 +95,35 @@ Content-Type: application/json
 # Teste da rota GET /usuarios/:id
 GET http://localhost:3000/usuarios/4
 Content-Type: application/json
+
+###
+
+### GET TODOS ORGANIZADORES
+GET http://localhost:3000/organizadores
+
+### GET ORGANIZADORES POR USUÁRIO
+GET http://localhost:3000/organizadores/usuario/4
+
+### GET ORGANIZADORES POR EVENTO
+GET http://localhost:3000/organizadores/evento/3
+
+### POST NOVO ORGANIZADOR
+POST http://localhost:3000/organizadores
+Content-Type: application/json
+
+{
+  "papel": "coordenador",
+  "id_usuario": 4,
+  "id_evento": 3
+}
+
+### PUT - ALTERAR PAPEL
+PUT http://localhost:3000/organizadores/4/3
+Content-Type: application/json
+
+{
+  "papel": "adm"
+}
+
+### DELETE - REMOVER ORGANIZADOR
+DELETE http://localhost:3000/organizadores/4/3

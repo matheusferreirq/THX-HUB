@@ -83,7 +83,7 @@ const updateApelido = async (req, res) => {
 
 const remove = async (req, res) => {
   const { id } = req.params;
-  userService.deleteUser(id);
+  await userService.deleteUser(id);
   res.status(204).send();;
 };
 

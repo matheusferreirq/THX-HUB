@@ -16,7 +16,7 @@
 
 O THX Hub é uma plataforma web criada para facilitar a organização de resenhas, festas informais realizadas em casa ou no condomínio. A solução surgiu da necessidade de centralizar o controle de convidados, inscrições e informações do evento de forma prática e eficiente.
 
-Com uma interface simples, a plataforma permite criar eventos, gerar links de inscrição, limitar participantes, editar dados e acompanhar confirmações em tempo real. Também é possível adicionar colaboradores para ajudar na organização e classificar convidados com selos personalizados, tornando a experiência mais divertida e engajada.
+Com uma interface simples, a plataforma permite criar eventos, gerar links de inscrição, limitar participantes, editar dados e acompanhar confirmações em tempo real. Também é possível adicionar colaboradores para ajudar na organização e classificar convidados com selos personalizados, além de possibilitar o envio de mensagens em um painel próprio de cada evento, tornando a experiência mais divertida e engajada!
 
 O projeto tem como objetivo transformar festas caseiras em eventos organizados, colaborativos e inesquecíveis.
 
@@ -29,23 +29,28 @@ _Coloque aqui o link para seu projeto publicado e link para vídeo de demonstra�
 
 Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
-- **assets/:** aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como imagens.
-- **config/:** Arquivos relacionados à configuração do projeto.
-- **controllers/:** Lógica de controle das requisições da aplicação.
-- **documentos/:** Documentos do projeto, como o Web Application  Document (WAD).
-- **models/:** Definições dos modelos de dados utilizados na aplicação.
-- **routes/:** Definição as rotas da aplicação.
-- **scripts/:** Arquivos de JavaScript públicos.
-- **services/:** Serviços auxiliares da aplicação.
-- **tests/:** Arquivos de testes unitários.
-- **views/:** Views da aplicação web.
-- **.env.example:** Arquivo de exemplo para as variáveis de ambiente.
-- **.gitignore:** Arquivo que especifica arquivos e diretórios que o Git deve ignorar.
-- **jest.config.js:** Arquivo de configuração para o framework de testes Jest.
-- **package.json:** Informações sobre o projeto e suas dependências.
-- **README .md:** Arquivo que serve como guia introdutório e explicação geral sobre o projeto e a aplicação (o mesmo arquivo que você está lendo agora).
-- **rest.http:**
-- **server.js:** Arquivo principal que inicializa o servidor da aplicação.
+## Estrutura de Pastas do Projeto
+
+- **assets/**: Aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como imagens.
+- **documentos/**: Documentos do projeto, como o Web Application Document (WAD).
+- **src/**: Diretório principal com o código-fonte da aplicação.
+  - **config/**: Arquivos relacionados à configuração do projeto.
+  - **controllers/**: Lógica de controle das requisições da aplicação.
+  - **models/**: Definições dos modelos de dados utilizados na aplicação.
+  - **repositories/**: Lógica de acesso e manipulação dos dados da aplicação.
+  - **routes/**: Definição das rotas da aplicação.
+  - **scripts/**: Arquivos de JavaScript públicos.
+  - **services/**: Serviços auxiliares da aplicação.
+  - **tests/**: Arquivos de testes unitários.
+  - **views/**: Views da aplicação web.
+- **.env.example**: Arquivo de exemplo para as variáveis de ambiente.
+- **.gitignore**: Arquivo que especifica arquivos e diretórios que o Git deve ignorar.
+- **jest.config.js**: Arquivo de configuração para o framework de testes Jest.
+- **package.json**: Informações sobre o projeto e suas dependências.
+- **readme.md**: Arquivo que serve como guia introdutório e explicação geral sobre o projeto e a aplicação (o mesmo arquivo que você está lendo agora).
+- **rest.http**: Arquivo para testar as rotas da API diretamente no VS Code.
+- **server.js**: Arquivo principal que inicializa o servidor da aplicação.
+
 
 ## 💻 Como inicializar o projeto
 
@@ -85,8 +90,14 @@ Aqui encontram-se todas as instruções necessárias para a instalação de todo
     * 
 * 0.3.0 - XX/XX/2025
     * 
-* 0.2.0 - XX/XX/2025
-    * 
+* 0.2.0 - 25/05/2025
+    * Atualização do read.me
+    * Atualização da introdução (seção 1 do WAD)
+    * Atualização da modelagem do banco de dados (subseção 3.1 do WAD)
+    * Explicação do BD e models (subseção 3.1.1 do WAD)
+    * Descrição dos endpoints (subseção 3.6 do WAD)
+    * Incrementação do padrão MVC para as tabelas `usuarios`, `eventos`, `organizadores_evento`, `convidados_evento` e `mensagens_evento`.
+    * Estruturação correta das pastas
 * 0.1.0 - 09/05/2025
     * Atualização do read.me
     * Introdução (seção 1 do WAD)

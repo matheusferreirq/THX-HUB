@@ -20,6 +20,7 @@ THX Hub é uma plataforma web desenvolvida com o objetivo de facilitar o gerenci
 Com uma interface simplificada e intuitiva, o THX Hub permite que você crie um evento e defina seus principais detalhes essenciais: local, data, hora, descrição e regras. A partir dessas informações, um link de inscrição é gerado para ser facilmente compartilhado com seus convidados. Esse sistema foi pensado para promover a organização e garantir o limite de participantes adequado à capacidade do ambiente.
 Além do controle de inscrições, o THX Hub possibilita ao anfitrião visualizar uma lista atualizada de confirmados, editar os dados do evento a qualquer momento e até mesmo encerrar o período de inscrições automaticamente quando o limite for atingido. Adicionalmente, é possível nomear colaboradores para auxiliar na organização, permitindo uma gestão compartilhada e mais leve.
 Outra funcionalidade interessante da aplicação é a integração de um sistema de classificação entre os convidados. Com base no histórico de participação, o anfitrião pode atribuir selos como “Falta Tudo”, “Tá em Todas”, “Convidado VIP” ou criar categorias personalizadas. Essa funcionalidade torna a experiência mais engajada e reforça o espírito descontraído da plataforma.
+Também está disponível um painel de mensagens exclusivo para cada evento, onde os convidados e organizadores podem se comunicar livremente. Esse recurso permite o envio de recados, dúvidas ou sugestões de forma centralizada, promovendo a interação antes, durante e após o evento.
 Dessa forma, o THX Hub permite que você, anfitrião, transforme a tradicional festa em casa em uma experiência bem planejada, colaborativa e inesquecível!
 
 
@@ -52,7 +53,7 @@ Nesse sentido, a modelagem lógica é o planejamento essencial de uma aplicaçã
    <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
  </div>
 
-O sistema é composto por cinco tabelas principais: usuarios, eventos, organizadores_eventos, convidados_evento e inscricoes. A seguir, descrevemos como essas entidades se relacionam entre si.
+O sistema é composto por cinco tabelas principais: usuarios, eventos, organizadores_eventos, convidados_evento e mensagens_evento. A seguir, descrevemos como essas entidades se relacionam entre si.
 
 **1. Usuários e Eventos**
 A relação entre usuários e eventos no papel de organizadores é feita por meio da tabela *organizadores_eventos*. Essa tabela representa uma relação N para N, na qual um usuário pode organizar vários eventos e um evento pode ter mais de um organizador. Além disso, a tabela inclui um campo chamado `papel`, que permite registrar qual é o tipo de participação do organizador.

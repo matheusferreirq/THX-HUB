@@ -148,7 +148,66 @@ Essa estrutura modular facilita a gestão dos dados, assegurando a clara separa�
 
 ### 3.6. WebAPI e endpoints (Semana 05)
 
-*Utilize um link para outra página de documentação contendo a descrição completa de cada endpoint. Ou descreva aqui cada endpoint criado para seu sistema.*  
+#### Usuários (`/usuarios`)
+
+| Método | Rota                | Descrição                                    |
+|--------|---------------------|----------------------------------------------|
+| GET    | `/`                 | Retorna todos os usuários                    |
+| GET    | `/:id`              | Retorna um usuário específico por ID         |
+| POST   | `/`                 | Cria um novo usuário                         |
+| PUT    | `/:id/apelido`      | Atualiza o apelido eventual do usuário       |
+| PUT    | `/:id/nome`         | Atualiza o nome do usuário                   |
+| PUT    | `/:id/senha`        | Atualiza a senha do usuário                  |
+| PUT    | `/:id/email`        | Atualiza o email do usuário                  |
+| DELETE | `/:id`              | Remove o usuário pelo ID                     |
+
+---
+
+#### Eventos (`/eventos`)
+
+| Método | Rota      | Descrição                            |
+|--------|-----------|--------------------------------------|
+| GET    | `/`       | Retorna todos os eventos             |
+| GET    | `/:id`    | Retorna um evento específico         |
+| POST   | `/`       | Cria um novo evento                  |
+| PUT    | `/:id`    | Atualiza um evento existente         |
+| DELETE | `/:id`    | Remove um evento pelo ID             |
+
+---
+
+#### Convidados (`/eventos/:id_evento/convidados`)
+
+| Método | Rota                                                                 | Descrição                                           |
+|--------|----------------------------------------------------------------------|-----------------------------------------------------|
+| GET    | `/:id_evento/convidados`                                             | Lista todos os convidados de um evento              |
+| GET    | `/:id_evento/confirmados`                                            | Lista apenas os convidados confirmados              |
+| POST   | `/:id_evento/convidados`                                             | Convida um usuário para o evento                    |
+| PUT    | `/:id_evento/convidados/:id_convidado/confirmar`                     | Confirma presença de um convidado                   |
+| DELETE | `/:id_evento/convidados/:id_convidado`                               | Remove um convidado do evento                       |
+
+---
+
+#### Mensagens (`/eventos/:id_evento/mensagens`)
+
+| Método | Rota                                                       | Descrição                                      |
+|--------|------------------------------------------------------------|-----------------------------------------------|
+| POST   | `/:id_evento/mensagens`                                    | Envia uma nova mensagem para o evento         |
+| GET    | `/:id_evento/mensagens`                                    | Lista todas as mensagens de um evento         |
+| DELETE | `/:id_evento/mensagens/:id_mensagens_evento`               | Remove uma mensagem específica do evento      |
+
+---
+
+#### Organizadores (`/organizadores`)
+
+| Método | Rota                             | Descrição                                                      |
+|--------|----------------------------------|----------------------------------------------------------------|
+| GET    | `/`                              | Lista todos os organizadores                                   |
+| GET    | `/evento/:id_evento`             | Lista os organizadores de um evento                            |
+| GET    | `/usuario/:id_usuario`           | Lista os eventos organizados por um usuário                    |
+| POST   | `/`                              | Adiciona um novo organizador a um evento                       |
+| PUT    | `/:id_usuario/:id_evento`        | Atualiza o papel de um organizador                             |
+| DELETE | `/:id_usuario/:id_evento`        | Remove um organizador específico de um evento                  |
+
 
 ### 3.7 Interface e Navegação (Semana 07)
 

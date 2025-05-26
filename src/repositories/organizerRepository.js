@@ -15,7 +15,7 @@ class organizerRepository {
 
     async findByEvento(id_evento) {
         const result = await db.query(
-        'SELECT u.nome, oe.papel FROM organizadores_eventos oe JOIN usuarios u ON oe.id_usuario = u.id WHERE oe.id_evento = $1', 
+        'SELECT oe.id, oe.id_usuario, oe.id_evento, oe.papel, u.nome FROM organizadores_eventos oe JOIN usuarios u ON oe.id_usuario = u.id WHERE oe.id_evento = $1', 
         [id_evento]
         );
         if (result.rows.length === 0) return null;

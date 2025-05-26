@@ -5,7 +5,7 @@ Accept: application/json
 ###
 
 # Teste da rota GET /eventos/:id
-GET http://localhost:3000/eventos/2
+GET http://localhost:3000/eventos/3
 Accept: application/json
 
 ###
@@ -15,9 +15,9 @@ POST http://localhost:3000/eventos
 Content-Type: application/json
 
 {
-  "titulo": "HP NO THEUS",
-  "descricao": "Fresenha basica",
-  "local": "Casa do theus",
+  "titulo": "HP NA DUDA",
+  "descricao": "Vai todo mundo",
+  "local": "Share - 19",
   "data_hora_inicio": "20:00",
   "data_hora_fim": "07:00",
   "limite_convidados": "500"
@@ -26,62 +26,75 @@ Content-Type: application/json
 ###
 
 # Teste da rota PUT /eventos/:id
-PUT http://localhost:3000/eventos/6
+PUT http://localhost:3000/eventos/7
 Content-Type: application/json
 
 {
-  "titulo": "HP NO THEUS",
-  "descricao": "Resenha basicaaa",
-  "local": "Casa do theus",
+  "titulo": "HP NA DUDA",
+  "descricao": "Vai todo mundo",
+  "local": "Share - 19",
   "data_hora_inicio": "20:00",
   "data_hora_fim": "07:00",
-  "limite_convidados": "500"
+  "limite_convidados": "10"
 }
 
 ###
 
 # Teste da rota DELETE /eventos/:id
-DELETE http://localhost:3000/eventos/6
+DELETE http://localhost:3000/eventos/7
 Accept: application/json
 
 ###
 
+# Teste da rota POST /usuarios
+
+POST http://localhost:3000/usuarios
+Content-Type: application/json
+
+{ 
+  "nome": "Duda",
+  "email": "duda2@gmail.com",
+  "senha": "22222"
+}
+
+###
+
 # Teste da rota PUT /usuarios/:id/senha
-PUT http://localhost:3000/usuarios/4/senha
+PUT http://localhost:3000/usuarios/5/senha
 Content-Type: application/json
 
 {
-  "senha": "222222"
+  "senha": "3333"
 }
 
 ###
 
 # Teste da rota PUT /usuarios/:id/nome
-PUT http://localhost:3000/usuarios/4/nome
+PUT http://localhost:3000/usuarios/5/nome
 Content-Type: application/json
 
 {
-  "nome": "Matheus"
+  "nome": "dudex"
 }
 
 ###
 
 # Teste da rota PUT /usuarios/:id/email
-PUT http://localhost:3000/usuarios/4/email
+PUT http://localhost:3000/usuarios/5/email
 Content-Type: application/json
 
 {
-  "email": "matheuz@gmail.com"
+  "email": "duda@gmail.com"
 }
 
 ###
 
 # Teste da rota PUT /usuarios/:id/apelido
-PUT http://localhost:3000/usuarios/4/apelido
+PUT http://localhost:3000/usuarios/5/apelido
 Content-Type: application/json
 
 {
-  "apelido_eventual": "ADMN"
+  "apelido_eventual": "ORGANIZADORA"
 }
 
 ###
@@ -93,7 +106,7 @@ Content-Type: application/json
 ###
 
 # Teste da rota GET /usuarios/:id
-GET http://localhost:3000/usuarios/4
+GET http://localhost:3000/usuarios/5
 Content-Type: application/json
 
 ###
@@ -113,12 +126,12 @@ Content-Type: application/json
 
 {
   "papel": "coordenador",
-  "id_usuario": 4,
-  "id_evento": 3
+  "id_usuario": 5,
+  "id_evento": 5
 }
 
 ### PUT - ALTERAR PAPEL
-PUT http://localhost:3000/organizadores/4/3
+PUT http://localhost:3000/organizadores/5/5
 Content-Type: application/json
 
 {
@@ -126,7 +139,7 @@ Content-Type: application/json
 }
 
 ### DELETE - REMOVER ORGANIZADOR
-DELETE http://localhost:3000/organizadores/4/3
+DELETE http://localhost:3000/organizadores/5/5
 
 ### GET todos os convidados de um evento
 GET http://localhost:3000/eventos/3/convidados
@@ -145,19 +158,19 @@ POST http://localhost:3000/eventos/3/convidados
 Content-Type: application/json
 
 {
-  "id_convidado": 4
+  "id_convidado": 5
 }
 
 ###
 
 ### PUT confirmar presença do convidado no evento
-PUT http://localhost:3000/eventos/3/convidados/4/confirmar
+PUT http://localhost:3000/eventos/3/convidados/5/confirmar
 Accept: application/json
 
 ###
 
 ### DELETE remover convidado do evento
-DELETE http://localhost:3000/eventos/3/convidados/4
+DELETE http://localhost:3000/eventos/3/convidados/5
 Accept: application/json
 
 ###
@@ -173,7 +186,7 @@ POST http://localhost:3000/eventos/3/mensagens
 Content-Type: application/json
 
 {
-  "id_usuario": 4,
+  "id_usuario": 5,
   "conteudo": "Vai ser top!"
 }
 

@@ -8,7 +8,7 @@
     "dev": "nodemon server.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "init-db": "node scripts/runSQLScript.js"
+    "migration": "node ./src/scripts/runSQLScript.js"
   },
   "dependencies": {
     "body-parser": "^2.2.0",

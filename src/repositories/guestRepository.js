@@ -3,7 +3,11 @@ const Convidados = require ('../models/guestModel')
 
 class GuestRepository {
     async getAllByEvento(id_evento) {
-        const result = await db.query('SELECT * FROM convidados_evento WHERE id_evento = $1', [id_evento]);
+        const result = await db.query(`
+            SELECT SPLIT_PART(u.nome, ' ', 1) AS primeiro_nome, u.username, ce.confirmado
+            FROM convidados_evento ce
+            JOIN usuarios u ON u.id = ce.id_convidado
+            WHERE ce.id_evento = $1`, [id_evento]);
         return result.rows.map(row => new Convidados(row))
     }
 

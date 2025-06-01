@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>THX HUB</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/styles/landingStyle.css" />
+</head>
+<body>
+  <header>
+    <div id="logo">
+      <img src="/images/thxlogo-white.png" alt="THXHUB LOGO" />
+    </div>
+
+    <nav>
+      <ul id="anchors" class="nav-links">
+        <li><a href="cadastro.ejs">Cadastro</a></li>
+        <li><a href="login.ejs">Login</a></li>
+      </ul>
+      <div id="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <h1 id="main-title">Minha Casa, Nosso Point.</h1>
+    <p id="main-text">
+      O THX Hub é a plataforma definitiva para organizar, compartilhar e curtir
+      as melhores festas com a galera. Crie eventos, envie convites por link ou
+      QR Code e viva experiências únicas.
+    </p>
+
+    <form action="">
+      <button id="main-btn">Começar Agora!</button>
+    </form>
+  </main>
+
+  <footer>© 2025 THX Hub - Todos os direitos reservados.</footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>

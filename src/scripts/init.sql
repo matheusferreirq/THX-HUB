@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS usuarios (
   id SERIAL PRIMARY KEY,
+  username VARCHAR(50) NOT NULL,
   nome VARCHAR(50) NOT NULL,
   email VARCHAR(50) NOT NULL,
   senha VARCHAR(50) NOT NULL,
@@ -21,8 +22,9 @@ CREATE TABLE IF NOT EXISTS organizadores_eventos (
   papel VARCHAR(20),
   id_usuario INT,
   id_evento INT,
-  FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
-  FOREIGN KEY (id_evento) REFERENCES eventos(id)
+  FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_evento) REFERENCES eventos(id) ON DELETE CASCADE,
+  UNIQUE (id_usuario, id_evento)
 );
 
 CREATE TABLE IF NOT EXISTS convidados_evento (
@@ -31,8 +33,9 @@ CREATE TABLE IF NOT EXISTS convidados_evento (
   data_confirmacao TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
   id_evento INT,
   id_convidado INT,
-  FOREIGN KEY (id_evento) REFERENCES eventos(id),
-  FOREIGN KEY (id_convidado) REFERENCES usuarios(id)
+  FOREIGN KEY (id_evento) REFERENCES eventos(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_convidado) REFERENCES usuarios(id) ON DELETE CASCADE,
+  UNIQUE (id_convidado, id_evento)
 );
 
 CREATE TABLE mensagens_evento (

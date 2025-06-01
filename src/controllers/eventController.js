@@ -29,10 +29,21 @@ const remove = async (req, res) => {
     res.status(204).send();
 }
 
+const listView = async (req, res) => {
+    try {
+        const events = await eventService.getAll();
+        res.render('eventos', { eventos: events }); // renderiza a view e passa os dados
+    } catch (error) {
+        res.status(500).send('Erro ao carregar eventos: ' + error.message);
+    }
+};
+
+
 module.exports = { 
     getAll,
     getById, 
     create, 
     update, 
-    remove
+    remove,
+    listView
 }

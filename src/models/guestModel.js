@@ -1,11 +1,14 @@
+const Joi = require('joi');
+
 class Convidados {
-    constructor( {id=null, confirmado, data_confirmacao, id_evento, id_convidado} ) {
-        this.id = id;
-        this.confirmado = confirmado;
-        this.data_confirmacao = data_confirmacao;
-        this.id_evento = id_evento;
-        this.id_convidado = id_convidado;
+    static get schema() {
+        return Joi.object({
+            confirmado: Joi.boolean().required(),
+            data_confirmacao: Joi.date().optional(),
+            id_evento: Joi.number().integer().required(),
+            id_convidado: Joi.number().integer().required()
+        });
     }
 }
 
-module.exports = Convidados
+module.exports = Convidados;

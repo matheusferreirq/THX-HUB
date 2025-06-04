@@ -1,11 +1,14 @@
+const Joi = require('joi');
+
 class Mensagens {
-    constructor( { id = null, id_evento, id_usuario, conteudo, data_envio}) {
-        this.id = id;
-        this.id_evento = id_evento;
-        this.id_usuario = id_usuario;
-        this.conteudo = conteudo;
-        this.data_envio = data_envio;
-    };
+    static get schema() {
+        return Joi.object({
+            id_evento: Joi.number().integer().required(),
+            id_usuario: Joi.number().integer().required(),
+            conteudo: Joi.string().max(1000).required(),
+            data_envio: Joi.date().required()
+        });
+    }
 }
 
 module.exports = Mensagens;

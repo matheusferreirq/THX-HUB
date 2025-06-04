@@ -1,11 +1,14 @@
-class Usuarios {
-    constructor( { id = null, nome, email, senha, apelido_eventual} ) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.senha = senha;
-        this.apelido_eventual = apelido_eventual;
-    }
-};
+const Joi = require('joi');
 
-module.exports = Usuarios
+class Usuarios {
+    static get schema() {
+        return Joi.object({
+            nome: Joi.string().max(100).required(),
+            email: Joi.string().email().required(),
+            senha: Joi.string().min(6).required(),
+            apelido_eventual: Joi.string().max(50).optional().allow('')
+        });
+    }
+}
+
+module.exports = Usuarios;

@@ -1,10 +1,13 @@
+const Joi = require('joi');
+
 class Organizadores {
-    constructor( {id = null, papel, id_usuario, id_evento}) {
-        this.id = id;
-        this.papel = papel;
-        this.id_usuario = id_usuario;
-        this.id_evento = id_evento;
+    static get schema() {
+        return Joi.object({
+            papel: Joi.string().max(100).required(),
+            id_usuario: Joi.number().integer().required(),
+            id_evento: Joi.number().integer().required()
+        });
     }
 }
 
-module.exports = Organizadores
+module.exports = Organizadores;

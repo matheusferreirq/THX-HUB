@@ -1,14 +1,18 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
 * {
   box-sizing: border-box;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-height: 100%;
+}
+
 body {
+  min-height: 100%;
   background: linear-gradient(to bottom, #351d5e, #0a0a0a);
   font-family: 'Poppins', sans-serif;
   color: #f5f5f5;

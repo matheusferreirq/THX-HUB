@@ -18,8 +18,8 @@ Content-Type: application/json
   "titulo": "HP NA DUDA",
   "descricao": "Vai todo mundo",
   "local": "Share - 19",
-  "data_hora_inicio": "20:00",
-  "data_hora_fim": "07:00",
+  "data_hora_inicio": "2025-06-02T13:15:00.000Z",
+  "data_hora_fim": "2025-06-03T13:15:00.000Z",
   "limite_convidados": "500"
 }
 
@@ -41,7 +41,7 @@ Content-Type: application/json
 ###
 
 # Teste da rota DELETE /eventos/:id
-DELETE http://localhost:3000/eventos/7
+DELETE http://localhost:3000/eventos/3
 Accept: application/json
 
 ###

@@ -1,4 +1,6 @@
 const eventService = require('../services/eventService');
+const guestService = require('../services/guestService');
+const messageService = require('../services/messageService');
 
 const getAll = async (req, res) => {
     const events = await eventService.getAll();
@@ -32,20 +34,31 @@ const remove = async (req, res) => {
 const listView = async (req, res) => {
     try {
         const eventos = await eventService.getAll();
-        console.log(eventos)
-        res.render('eventos', { eventos: eventos }); // renderiza a view e passa os dados
+        res.render('eventos', { eventos: eventos });
     } catch (error) {
         res.status(500).send('Erro ao carregar eventos: ' + error.message);
     }
 };
 
-const createEvent = async (req, res) => {
+const viewCreate = async (req, res) => {
     try {
         res.render('criarEvento'); 
     } catch (error) {
         res.status(500).send('Erro ao carregar eventos: ' + error.message);
     }
 };
+
+const viewDetails = async (req, res) => {
+    try {
+        const { id } = req.params
+        const convidados = await guestService.getAllByEvento(id)
+        const mensagens = await messageService.getAllMensagens(id)
+        const evento = await eventService.getById(id)
+        res.render('detalhesEvento', {evento: evento, convidados: convidados, mensagens: mensagens});
+    } catch (error){
+        res.status(500).send('Erro ao carregar detalhes do evento: ' + error.message);
+    }
+}
 
 module.exports = { 
     getAll,
@@ -54,5 +67,6 @@ module.exports = {
     update, 
     remove,
     listView,
-    createEvent
+    viewCreate,
+    viewDetails
 }

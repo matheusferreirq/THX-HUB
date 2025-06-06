@@ -4,10 +4,15 @@ const Mensagens = require('../models/messageModel');
 class messageRepository {
     async getAllMensagens(id_evento) {
         const result = await db.query(
-            'SELECT * FROM mensagens_evento WHERE id_evento = $1 ORDER BY data_envio ASC', 
+            `SELECT m.conteudo, m.data_envio, u.username
+            FROM mensagens_evento m
+            LEFT JOIN usuarios u ON u.id = m.id_usuario
+            WHERE m.id_evento = $1
+            ORDER BY m.data_envio ASC;
+            `, 
             [id_evento]
         );
-        return result.rows.map(row => new Mensagens(row));
+        return result.rows;
     };
 
     async create({conteudo, id_evento, id_usuario}) {

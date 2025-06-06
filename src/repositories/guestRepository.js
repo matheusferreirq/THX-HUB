@@ -8,7 +8,7 @@ class GuestRepository {
             FROM convidados_evento ce
             JOIN usuarios u ON u.id = ce.id_convidado
             WHERE ce.id_evento = $1`, [id_evento]);
-        return result.rows.map(row => new Convidados(row))
+        return result.rows;
     }
 
     async getAllConfirmados(id_evento) {

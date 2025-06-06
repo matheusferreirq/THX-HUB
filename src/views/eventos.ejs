@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>THX HUB</title>
     <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-    rel="stylesheet"/>
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"/>
     <link rel="stylesheet" href="styles/eventosStyle.css" />
 </head>
 <body>
@@ -17,12 +17,16 @@
     <ul class="event-list">
         <% eventos.forEach(evento => { %>
             <li>
-                <strong><%= evento.titulo %></strong> - <%= evento.local %><br>
-                <small>
-                    <%= new Date(evento.data_hora_inicio).toLocaleString() %> até 
-                    <%= new Date(evento.data_hora_fim).toLocaleString() %><br>
-                    Limite: <%= evento.limite_convidados %> convidados
-                </small>
+                <a href="/eventos/<%= evento.id %>" class="event-link">
+                    <section id="event-section">
+                        <strong><%= evento.titulo %></strong> - <%= evento.local %><br>
+                        <small>
+                            <%= new Date(evento.data_hora_inicio).toLocaleString() %> até 
+                            <%= new Date(evento.data_hora_fim).toLocaleString() %><br>
+                            Limite: <%= evento.limite_convidados %> convidados
+                        </small>
+                    </section>
+                </a>
             </li>
         <% }) %>
     </ul>

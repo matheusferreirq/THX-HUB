@@ -154,11 +154,11 @@ Accept: application/json
 ###
 
 ### POST convidar usuário para evento
-POST http://localhost:3000/eventos/3/convidados
+POST http://localhost:3000/eventos/8/convidados
 Content-Type: application/json
 
 {
-  "id_convidado": 5
+  "id_convidado": 1
 }
 
 ###

@@ -49,7 +49,7 @@
     <script>
       async function confirmarPresenca() {
         const eventoId = <%= evento.id %>;
-        const convidadoId = 3;
+        const convidadoId = 1;
         const res = await fetch(`/eventos/${eventoId}/convidados/${convidadoId}/confirmar`, {
           method: 'PUT'
         });

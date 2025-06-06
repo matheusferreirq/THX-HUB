@@ -1,36 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>THX HUB</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-      rel="stylesheet"/>
-    <link rel="stylesheet" href="styles/eventosStyle.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>THX HUB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles/eventosStyle.css" />
 </head>
 <body>
-    <h1>Eventos que estão rolando!</h1>
+  <h1>Eventos que estão rolando!</h1>
 
-    <a href="/eventos/criar" class="btn-create">Criar Novo Evento</a>
+  <a href="/eventos/criar" class="btn-create">Criar Novo Evento</a>
 
-    <ul class="event-list">
-        <% eventos.forEach(evento => { %>
-            <li>
-                <a href="/eventos/<%= evento.id %>" class="event-link">
-                    <section id="event-section">
-                        <strong><%= evento.titulo %></strong> - <%= evento.local %><br>
-                        <small>
-                            <%= new Date(evento.data_hora_inicio).toLocaleString() %> até 
-                            <%= new Date(evento.data_hora_fim).toLocaleString() %><br>
-                            Limite: <%= evento.limite_convidados %> convidados
-                        </small>
-                    </section>
-                </a>
-            </li>
-        <% }) %>
-    </ul>
+  <ul class="event-list">
+    <% eventos.forEach(evento => { %>
+      <li>
+        <a href="/eventos/<%= evento.id %>" class="event-link">
+          <section class="event-section">
+            <strong><%= evento.titulo %></strong> - <%= evento.local %><br>
+            <small>
+              <%= new Date(evento.data_hora_inicio).toLocaleString() %> até 
+              <%= new Date(evento.data_hora_fim).toLocaleString() %><br>
+              Limite: <%= evento.limite_convidados %> convidados
+            </small>
+          </section>
+        </a>
+      </li>
+    <% }) %>
+  </ul>
 
-    <a href="/" class="btn-back">Voltar</a>
+  <a href="/" class="btn-back">Voltar</a>
 </body>
 </html>

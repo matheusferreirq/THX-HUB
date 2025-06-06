@@ -10,6 +10,7 @@ const organizerRoutes = require('./src/routes/organizerRoutes');
 const guestRoutes = require('./src/routes/guestRoutes');
 const messageRoutes = require('./src/routes/messageRoutes');
 const landingPageRoutes = require('./src/routes/landingPageRoutes');
+const homeRoutes = require('./src/routes/homeRoutes')
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -24,6 +25,7 @@ app.use('/eventos', eventRoutes);
 app.use('/organizadores', organizerRoutes);
 app.use('/eventos', guestRoutes);
 app.use('/eventos', messageRoutes);
+app.use('/home', homeRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Aplicação rodando em http://localhost:${PORT}`));

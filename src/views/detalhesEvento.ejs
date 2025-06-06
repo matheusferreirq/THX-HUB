@@ -12,16 +12,21 @@
       <h2><%= evento.titulo %></h2>
       <a href="/eventos" class="btn-voltar">Voltar</a>
 
+      <div class="header-row">
+        <h2><%= evento.titulo %></h2>
+        <div class="button-group">
+          <button onclick="confirmarPresenca()" class="button subscribe-button">Confirmar Presença</button>
+          <button onclick="deletarEvento()" class="button btn-delete">Deletar Evento</button>
+        </div>
+      </div>
+
+
       <div class="event-info">
         <p><strong>Local:</strong> <%= evento.local %></p>
         <p><strong>Início:</strong> <%= new Date(evento.data_hora_inicio).toLocaleString('pt-BR') %></p>
         <p><strong>Fim:</strong> <%= new Date(evento.data_hora_fim).toLocaleString('pt-BR') %></p>
         <p><strong>Limite:</strong> <%= evento.limite_convidados %> convidados</p>
         <p><strong>Descrição:</strong> <%= evento.descricao %></p>
-
-      <button onclick="confirmarPresenca()" class="subscribe-button">Confirmar Presença</button>
-      <%
-      %>
 
       <div class="section">
         <h3>Convidados Confirmados</h3>
@@ -42,7 +47,7 @@
 
         <form action="/eventos/<%= evento.id %>/mensagens" method="POST" class="chat-form">
           <input type="text" name="conteudo" placeholder="Escreva uma mensagem..." required>
-          <button type="submit">Enviar</button>
+          <button type="submit" class="button">Enviar</button>
         </form>
       </div>
     </div>
@@ -53,6 +58,23 @@
         const res = await fetch(`/eventos/${eventoId}/convidados/${convidadoId}/confirmar`, {
           method: 'PUT'
         });
+      }
+
+      async function deletarEvento() {
+        const confirmacao = confirm('Tem certeza que deseja deletar este evento? Essa ação não poderá ser desfeita.');
+        if (!confirmacao) return;
+
+        const eventoId = <%= JSON.stringify(evento.id) %>;
+        const res = await fetch(`/eventos/${eventoId}`, {
+          method: 'DELETE'
+        });
+
+        if (res.ok) {
+          alert('Evento deletado com sucesso!');
+          window.location.href = '/eventos';
+        } else {
+          alert('Erro ao deletar evento.');
+        }
       }
     </script>
 </body>

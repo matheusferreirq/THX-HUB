@@ -16,7 +16,7 @@ const getById = async (req, res) => {
 
 const create = async (req, res) => {
     const event = await eventService.create(req.body);
-    res.status(201).json(event)
+    res.redirect('/eventos')
 }
 
 const update = async (req, res) => {
@@ -42,7 +42,8 @@ const listView = async (req, res) => {
 
 const viewCreate = async (req, res) => {
     try {
-        res.render('criarEvento'); 
+        res.render('criarEvento');
+        
     } catch (error) {
         res.status(500).send('Erro ao carregar eventos: ' + error.message);
     }

@@ -52,15 +52,16 @@ POST http://localhost:3000/usuarios
 Content-Type: application/json
 
 { 
-  "nome": "Duda",
-  "email": "duda2@gmail.com",
-  "senha": "22222"
+  "username": "stef.soares",
+  "nome": "Stefanne",
+  "email": "stefanne@gmail.com",
+  "senha": "222222"
 }
 
 ###
 
 # Teste da rota PUT /usuarios/:id/senha
-PUT http://localhost:3000/usuarios/5/senha
+PUT http://localhost:3000/usuarios/2/senha
 Content-Type: application/json
 
 {
@@ -70,27 +71,27 @@ Content-Type: application/json
 ###
 
 # Teste da rota PUT /usuarios/:id/nome
-PUT http://localhost:3000/usuarios/5/nome
+PUT http://localhost:3000/usuarios/2/nome
 Content-Type: application/json
 
 {
-  "nome": "dudex"
+  "nome": "Ana"
 }
 
 ###
 
 # Teste da rota PUT /usuarios/:id/email
-PUT http://localhost:3000/usuarios/5/email
+PUT http://localhost:3000/usuarios/2/email
 Content-Type: application/json
 
 {
-  "email": "duda@gmail.com"
+  "email": "anasilva@gmail.com"
 }
 
 ###
 
 # Teste da rota PUT /usuarios/:id/apelido
-PUT http://localhost:3000/usuarios/5/apelido
+PUT http://localhost:3000/usuarios/2/apelido
 Content-Type: application/json
 
 {
@@ -106,7 +107,7 @@ Content-Type: application/json
 ###
 
 # Teste da rota GET /usuarios/:id
-GET http://localhost:3000/usuarios/5
+GET http://localhost:3000/usuarios/2
 Content-Type: application/json
 
 ###

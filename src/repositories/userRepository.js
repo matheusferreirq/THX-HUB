@@ -4,22 +4,22 @@ const Usuarios = require('../models/userModel')
 class UserRepository {
     async findAll() {
         const result = await db.query('SELECT * FROM usuarios');
-        return result.rows.map(row => new Usuarios(row));
+        return result.rows;
     };
 
     async findById(id) {
         const result = await db.query('SELECT * FROM usuarios WHERE id = $1', [id]);
         if (result.rows.length === 0) return null;
-        return new Usuarios(result.rows[0]);
+        return result.rows[0];
     };
 
     async create(usuario) {
-        const { nome, email, senha } = usuario;
+        const { username, nome, email, senha } = usuario;
         const result = await db.query(
-            'INSERT INTO usuarios (nome, email, senha) VALUES ($1, $2, $3) RETURNING *',
-            [nome, email, senha]
+            'INSERT INTO usuarios (username, nome, email, senha) VALUES ($1, $2, $3, $4) RETURNING *',
+            [username, nome, email, senha]
         );
-        return new Usuarios(result.rows[0])
+        return result.rows[0];
     };
 
     async updateNome(id, novoNome) {
@@ -28,7 +28,7 @@ class UserRepository {
         [novoNome, id]
         );
         if (result.rows.length === 0) return null;
-        return new Usuarios(result.rows[0]);
+        return result.rows[0];
     }
 
     async updateSenha(id, novaSenha) {
@@ -37,7 +37,7 @@ class UserRepository {
         [novaSenha, id]
         );
         if (result.rows.length === 0) return null;
-        return new Usuarios(result.rows[0]);
+        return result.rows[0];
     }
 
     async updateEmail(id, novoEmail) {
@@ -46,7 +46,7 @@ class UserRepository {
         [novoEmail, id]
         );
         if (result.rows.length === 0) return null;
-        return new Usuarios(result.rows[0]);
+        return result.rows[0];
     }
 
     async updateApelido(id, novoApelido) {
@@ -55,7 +55,7 @@ class UserRepository {
         [novoApelido, id]
         );
         if (result.rows.length === 0) return null;
-        return new Usuarios(result.rows[0]);
+        return result.rows[0];
     }
 
     async delete(id) {

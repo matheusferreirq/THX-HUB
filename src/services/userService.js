@@ -1,16 +1,29 @@
+const Joi = require('joi');
 const userRepository = require('../repositories/userRepository');
+const userModel = require('../models/userModel')
+const userArraySchema = Joi.array().items(userModel.schema);
 
 class userService {
-  getAll() {
-    return userRepository.findAll();
+  async getAll() {
+    const users = await userRepository.findAll();
+    const { error, value } = userArraySchema.validate(users);
+    if (error) {
+      throw new Error(`Erro de validação: ${error.message}`);
+    }
+    return value;
   }
+
 
   getById(id) {
     return userRepository.findById(id)
   }
 
   create(data) {
-    return userRepository.create(data);
+    const { error, value } = userModel.schema.validate(data);
+    if (error) {
+      throw new Error(`Erro de validação: ${error.message}`);
+    }
+    return userRepository.create(value);
   }
 
   updateNome(id, nome) {

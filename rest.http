@@ -155,7 +155,7 @@ Accept: application/json
 ###
 
 ### POST convidar usuário para evento
-POST http://localhost:3000/eventos/8/convidados
+POST http://localhost:3000/eventos/2/convidados
 Content-Type: application/json
 
 {

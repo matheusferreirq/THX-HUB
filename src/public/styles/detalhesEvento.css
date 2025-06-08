@@ -6,32 +6,47 @@ html,
 body {
   margin: 0;
   padding: 0;
-  min-height: 100%;
+  min-height: 100vh;
   font-family: 'Poppins', sans-serif;
   color: #f5f5f5;
   background: linear-gradient(to bottom, #351d5e, #0a0a0a);
   line-height: 1.6;
 }
 
-body {
-  opacity: 0;
-  animation: fadeIn 1s ease forwards;
-  padding: 40px 20px;
-  max-width: 800px;
-  margin: 0 auto;
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 40px auto 20px;
+  padding: 0 20px;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
-h2 {
+.page-header h1 {
   font-size: 2rem;
-  margin-bottom: 20px;
-  text-align: center;
+  margin: 0;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+main.main-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.content {
+  flex: 2;
+  min-width: 500px;
+}
+
+.sidebar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .event-info,
@@ -39,8 +54,11 @@ h2 {
   background: linear-gradient(to right, #24153f, #2d1d4f);
   border-radius: 10px;
   padding: 20px;
-  margin-bottom: 20px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.message-section {
+  margin-top: 30px;
 }
 
 .event-info p,
@@ -48,13 +66,12 @@ h2 {
 .section li {
   margin: 0.5rem 0;
   font-size: 1rem;
-  line-height: 1.4;
 }
 
 .section h3 {
   margin-bottom: 10px;
   color: #bfaaff;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 ul {
@@ -62,11 +79,29 @@ ul {
   padding-left: 0;
 }
 
-li strong {
-  color: #f5f5f5;
+.messages-list li {
+  margin-bottom: 0.75rem;
 }
 
-/* ========= BOTÕES GENÉRICOS ========= */
+.sidebar-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-list li span {
+  font-size: 0.9rem;
+}
+
+.status-confirmado {
+  color: #28a745;
+}
+.status-pendente {
+  color: orange;
+}
+
+/* Botões */
 .button {
   padding: 0.6rem 1.2rem;
   border: none;
@@ -89,10 +124,7 @@ li strong {
   left: -50%;
   width: 100%;
   height: 300%;
-  background: linear-gradient(120deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0) 75%);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 75%);
   transform: translateY(-50%) rotate(25deg);
   transition: left 0.5s ease;
 }
@@ -106,11 +138,9 @@ li strong {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* ========= BOTÕES ESPECÍFICOS ========= */
 .subscribe-button {
   background: linear-gradient(135deg, #9f7aea, #c684ff);
 }
-
 .subscribe-button:hover {
   background: linear-gradient(135deg, #805ad5, #a767e5);
 }
@@ -118,16 +148,13 @@ li strong {
 .btn-delete {
   background: linear-gradient(135deg, #e53e3e, #ff6b6b);
 }
-
 .btn-delete:hover {
   background: linear-gradient(135deg, #c53030, #e34a4a);
 }
 
-/* ========= BOTÃO VOLTAR ========= */
 .btn-voltar {
   display: inline-block;
   padding: 10px 20px;
-  margin-bottom: 20px;
   background: linear-gradient(135deg, #6200ee, #9a5aff);
   color: white;
   text-decoration: none;
@@ -137,13 +164,23 @@ li strong {
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
-
 .btn-voltar:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* ========= FORMULÁRIO DE MENSAGEM ========= */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
 .chat-form {
   display: flex;
   margin-top: 1rem;
@@ -159,7 +196,6 @@ li strong {
   color: #fff;
   transition: all 0.4s ease;
 }
-
 .chat-form input:focus {
   outline: none;
   box-shadow: 0 0 2px #b84eff, 0 0 4px #b84eff;
@@ -167,36 +203,8 @@ li strong {
   background: #4a3089;
 }
 
-/* ========= LINKS ========= */
-a {
-  color: inherit !important;
-  text-decoration: none !important;
-}
-
-a:hover,
-a:visited,
-a:active,
-a:focus {
-  color: inherit !important;
-  text-decoration: none !important;
-  outline: none;
-}
-
-/* ========= HEADER ========= */
-.header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.header-row h2 {
-  margin: 0;
-  font-size: 1.8rem;
-  color: white;
-}
-
-.button-group {
-  display: flex;
-  gap: 10px;
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
 }

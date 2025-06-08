@@ -10,7 +10,7 @@ const create = async (req, res ) => {
     const { id_evento } = req.params;
     const { conteudo, id_usuario } = req.body;
     const message = await messageService.create( {conteudo, id_evento, id_usuario} )
-    if (message) res.json(message);
+    if (message) res.redirect(`/eventos/${id_evento}`);
     else res.status(404).json( { message: "Evento ou usuário não encontrados"} );
 }
 

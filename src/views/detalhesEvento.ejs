@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/detalhesEvento.css">
-    <title>DETALHES - THX HUB</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/styles/detalhesEvento.css" />
+  <title>DETALHES - THX HUB</title>
 </head>
 <body>
-  <main style="margin-left: 80px;">
-    <div class="event-detail">
-      <h2><%= evento.titulo %></h2>
-      <a href="/eventos" class="btn-voltar">Voltar</a>
+  <header class="page-header">
+    <h1><%= evento.titulo %></h1>
+    <a href="/eventos" class="btn-voltar">← Voltar</a>
+  </header>
 
+  <main class="main-container">
+    <div class="content">
       <div class="header-row">
-        <h2><%= evento.titulo %></h2>
         <div class="button-group">
           <button onclick="confirmarPresenca()" class="button subscribe-button">Confirmar Presença</button>
           <button onclick="deletarEvento()" class="button btn-delete">Deletar Evento</button>
         </div>
       </div>
-
 
       <div class="event-info">
         <p><strong>Local:</strong> <%= evento.local %></p>
@@ -27,55 +27,131 @@
         <p><strong>Fim:</strong> <%= new Date(evento.data_hora_fim).toLocaleString('pt-BR') %></p>
         <p><strong>Limite:</strong> <%= evento.limite_convidados %> convidados</p>
         <p><strong>Descrição:</strong> <%= evento.descricao %></p>
-
-      <div class="section">
-        <h3>Convidados Confirmados</h3>
-        <ul>
-          <% convidados.forEach(c => { %>
-            <li><%= c.primeiro_nome %> (@<%= c.username %>)</li>
-          <% }) %>
-        </ul>
       </div>
 
-      <div class="section">
+      <div class="section message-section">
         <h3>Painel de Mensagens</h3>
-        <ul>
+        <ul class="messages-list">
           <% mensagens.forEach(m => { %>
             <li><strong>@<%= m.username %>:</strong> <%= m.conteudo %></li>
           <% }) %>
         </ul>
 
         <form action="/eventos/<%= evento.id %>/mensagens" method="POST" class="chat-form">
-          <input type="text" name="conteudo" placeholder="Escreva uma mensagem..." required>
+          <input type="text" name="conteudo" placeholder="Escreva uma mensagem..." required />
           <button type="submit" class="button">Enviar</button>
         </form>
       </div>
     </div>
-    <script>
-      async function confirmarPresenca() {
-        const eventoId = <%= evento.id %>;
-        const convidadoId = 1;
+
+    <!-- Sidebar Direita -->
+    <aside class="sidebar">
+      <div class="section">
+        <h3>Convidados</h3>
+        <ul class="sidebar-list">
+          <% convidados.forEach(c => { %>
+            <li>
+              <%= c.primeiro_nome %> (@<%= c.username %>)
+              <span class="<% if (c.confirmado) { %>status-confirmado<% } else { %>status-pendente<% } %>">
+                <% if (c.confirmado) { %>✅ Confirmado<% } else { %>⏳ Pendente<% } %>
+              </span>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>Organizador(es)</h3>
+        <ul class="sidebar-list">
+          <% if (evento.organizadores && evento.organizadores.length > 0) { %>
+            <% evento.organizadores.forEach(o => { %>
+                <li><%= o.primeiro_nome %> (@<%= o.username %>)</li>
+            <% }) %>
+          <% } else { %>
+            <li>Nenhum organizador encontrado.</li>
+          <% } %>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h3>Todos os Usuários</h3>
+        <ul class="sidebar-list">
+          <% usuarios.forEach(u => { %>
+            <li>
+              <%= u.primeiro_nome %> (@<%= u.username %>)
+              <button onclick="convidarUsuario(<%= u.id %>)" class="button small">Convidar</button>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    async function confirmarPresenca() {
+      const eventoId = <%= JSON.stringify(evento.id) %>;
+      const convidadoId = 1;
+
+      try {
         const res = await fetch(`/eventos/${eventoId}/convidados/${convidadoId}/confirmar`, {
-          method: 'PUT'
-        });
-      }
-
-      async function deletarEvento() {
-        const confirmacao = confirm('Tem certeza que deseja deletar este evento? Essa ação não poderá ser desfeita.');
-        if (!confirmacao) return;
-
-        const eventoId = <%= JSON.stringify(evento.id) %>;
-        const res = await fetch(`/eventos/${eventoId}`, {
-          method: 'DELETE'
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          }
         });
 
         if (res.ok) {
-          alert('Evento deletado com sucesso!');
-          window.location.href = '/eventos';
+          alert('Presença confirmada!');
+          window.location.reload();
         } else {
-          alert('Erro ao deletar evento.');
+          const error = await res.json();
+          alert(`Erro: ${error.message || 'Não foi possível confirmar a presença'}`);
         }
+      } catch (err) {
+        console.error(err);
+        alert('Erro na conexão com o servidor.');
       }
-    </script>
+    }
+
+    async function deletarEvento() {
+      const confirmacao = confirm('Tem certeza que deseja deletar este evento? Essa ação não poderá ser desfeita.');
+      if (!confirmacao) return;
+
+      const eventoId = <%= JSON.stringify(evento.id) %>;
+      const res = await fetch(`/eventos/${eventoId}`, { method: 'DELETE' });
+
+      if (res.ok) {
+        alert('Evento deletado com sucesso!');
+        window.location.href = '/eventos';
+      } else {
+        alert('Erro ao deletar evento.');
+      }
+    }
+
+    async function convidarUsuario(usuarioId) {
+      const eventoId = <%= evento.id %>;
+
+      try {
+        const res = await fetch(`/eventos/${eventoId}/convidados`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id_convidado: usuarioId })
+        });
+
+        if (res.ok) {
+          alert('Usuário convidado com sucesso!');
+          window.location.reload();
+        } else {
+          const error = await res.json();
+          alert(`Erro ao convidar usuário: ${error.message || 'Tente novamente'}`);
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Erro na conexão com o servidor.');
+      }
+    }
+  </script>
 </body>
 </html>

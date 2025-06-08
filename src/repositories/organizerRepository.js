@@ -32,7 +32,6 @@ class organizerRepository {
 
     async create(organizador) {
         const { id_usuario, id_evento, papel } = organizador;
-        console.log(organizador)
         const result = await db.query(
             'INSERT INTO organizadores_eventos (id_usuario, id_evento, papel) VALUES ($1, $2, $3) RETURNING *',
             [id_usuario, id_evento, papel]

@@ -1,38 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar evento - THX HUB</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="/styles/criarEventoStyle.css" /></head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Criar evento - THX HUB</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/criarEventoStyle.css" />
+</head>
 <body>
 
-    <header>
-        <h1>Criar Evento</h1>
-        <a href="/eventos" class="btn-back">← Voltar</a>
-    </header>
+  <div id="notification" class="notification">Evento criado com sucesso!</div>
 
-    <form action="/eventos" method="post">
-        <label for="titulo" id="title-input">Título</label>
-        <input type="text" id="title" name="titulo" required>
+  <header class="page-header">
+    <h1>Criar Evento</h1>
+    <a href="/eventos" class="btn-voltar">← Voltar</a>
+  </header>
 
-        <label for="descricao">Descrição</label>
-        <textarea name="descricao" id="description" rows="3"></textarea>
+  <main class="center-container">
+    <div class="content">
+      <form action="/eventos" method="post" class="event-form" id="createEventForm">
+        <div class="form-group">
+          <label for="title">Título</label>
+          <input type="text" id="title" name="titulo" required />
+        </div>
 
-        <label for="local">Local</label>
-        <input type="text" id="local" name="local" required>
+        <div class="form-group">
+          <label for="description">Descrição</label>
+          <textarea name="descricao" id="description" rows="3"></textarea>
+        </div>
 
-        <label for="data_hora_inicio">Data/Hora Início</label>
-        <input type="datetime-local" name="data_hora_inicio" id="datehourstart">
+        <div class="form-group">
+          <label for="local">Local</label>
+          <input type="text" id="local" name="local" required />
+        </div>
 
-        <label for="data_hora_fim">Data/Hora Final</label>
-        <input type="datetime-local" name="data_hora_fim" id="datehourend">
+        <div class="form-group">
+          <label for="datehourstart">Data/Hora Início</label>
+          <input type="datetime-local" name="data_hora_inicio" id="datehourstart" required />
+        </div>
 
-        <label for="limite_convidados">Limite de Convidados</label>
-        <input type="number" id="limite_convidados" name="limite_convidados" min="1" required>
+        <div class="form-group">
+          <label for="datehourend">Data/Hora Final</label>
+          <input type="datetime-local" name="data_hora_fim" id="datehourend" required />
+        </div>
 
-        <button type="submit">Criar Evento</button>
-    </form>
+        <div class="form-group">
+          <label for="limite_convidados">Limite de Convidados</label>
+          <input type="number" id="limite_convidados" name="limite_convidados" min="1" required />
+        </div>
+
+        <button type="submit" class="button">Criar Evento</button>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById('createEventForm');
+    const notification = document.getElementById('notification');
+
+    form.addEventListener('submit', function (e) {
+      notification.classList.add('show');
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    });
+  </script>
+
 </body>
 </html>

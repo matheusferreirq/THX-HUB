@@ -6,11 +6,10 @@
 
 ## Sumário
 
-1. [Introdução](#c1)  
-2. [Visão Geral da Aplicação Web](#c2)  
-3. [Projeto Técnico da Aplicação Web](#c3)  
-4. [Desenvolvimento da Aplicação Web](#c4)  
-5. [Referências](#c5)  
+1. [Introdução](#c1)   
+2. [Projeto Técnico da Aplicação Web](#c3)  
+3. [Desenvolvimento da Aplicação Web](#c4)  
+4. [Referências](#c5)  
 
 <br>
 
@@ -23,26 +22,13 @@ Outra funcionalidade interessante da aplicação é a integração de um sistema
 Também está disponível um painel de mensagens exclusivo para cada evento, onde os convidados e organizadores podem se comunicar livremente. Esse recurso permite o envio de recados, dúvidas ou sugestões de forma centralizada, promovendo a interação antes, durante e após o evento.
 Dessa forma, o THX Hub permite que você, anfitrião, transforme a tradicional festa em casa em uma experiência bem planejada, colaborativa e inesquecível!
 
-
 ---
 
-## <a name="c2"></a>2. Visão Geral da Aplicação Web
+## <a name="c3"></a>2. Projeto da Aplicação Web
 
-### 2.1. Personas (Semana 01 - opcional)
+### 2.1. Modelagem do banco de dados
 
-*Posicione aqui sua(s) Persona(s) em forma de texto markdown com imagens, ou como imagem de template preenchido. Atualize esta seção ao longo do módulo se necessário.*
-
-### 2.2. User Stories (Semana 01 - opcional)
-
-*Posicione aqui a lista de User Stories levantadas para o projeto. Siga o template de User Stories e utilize a referência USXX para numeração (US01, US02, US03, ...). Indique todas as User Stories mapeadas, mesmo aquelas que não forem implementadas ao longo do projeto. Não se esqueça de explicar o INVEST de 1 User Storie prioritária.*
-
----
-
-## <a name="c3"></a>3. Projeto da Aplicação Web
-
-### 3.1. Modelagem do banco de dados  (Semana 3)
-
-Nesta seção (3.1), serão apresentadas a modelagem lógica do banco de dados envolvendo o projeto e a explicação de suas  entidades e respectivas relações.
+Nesta seção (2.1), serão apresentadas a modelagem lógica do banco de dados envolvendo o projeto e a explicação de suas  entidades e respectivas relações.
 
 Nesse sentido, a modelagem lógica é o planejamento essencial de uma aplicação web, definindo seus principais elementos (dados, funcionalidades e regras) e suas interconexões, servindo como base para o desenvolvimento e garantindo um sistema bem estruturado e compreendido por todos. Assim, A arquitetura do banco de dados do THX Hub foi pensada para simplificar o gerenciamento de eventos, mapeando elementos e interações cruciais.
 
@@ -67,7 +53,7 @@ Por fim, a tabela *mensagens_evento* está relacionada a eventos e usuários, pe
 
 Para acessar o modelo físico, [acesse o link aqui](https://github.com/matheusferreirq/THX-HUB/blob/main/scripts/init.sql).
 
-### 3.1.1 BD e Models (Semana 5)
+### 2.1.1 BD e Models
 
 #### Usuários (`Usuarios`)
 Representa os usuários da plataforma, que podem ser anfitriões, organizadores ou convidados em eventos. Cada usuário possui os seguintes atributos:
@@ -123,7 +109,7 @@ Representa as mensagens enviadas por usuários dentro de eventos, permitindo a c
 Essa estrutura modular facilita a gestão dos dados, assegurando a clara separação entre entidades e seus relacionamentos na plataforma.
 
 
-### 3.2. Arquitetura (Semana 5)
+### 2.2. Arquitetura (Semana 5)
 
 *Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário.*
 
@@ -134,20 +120,39 @@ Essa estrutura modular facilita a gestão dos dados, assegurando a clara separa�
   
 *Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View.*
 
-### 3.3. Wireframes (Semana 03 - opcional)
+### 2.4. Guia de estilos
 
-*Posicione aqui as imagens do wireframe construído para sua solução e, opcionalmente, o link para acesso (mantenha o link sempre público para visualização).*
+O THX Hub adota uma identidade visual vibrante e noturna, inspirada no universo das festas, com foco em modernidade e clareza. A seguir, estão os principais elementos do seu guia de estilos:
 
-### 3.4. Guia de estilos (Semana 05 - opcional)
+#### Paleta de Cores:
 
-*Descreva aqui orientações gerais para o leitor sobre como utilizar os componentes do guia de estilos de sua solução.*
+- Roxo profundo (#351D5E) e roxo neon (#9A5AFF) como tons principais
 
+- Preto absoluto (#0A0A0A) como base
 
-### 3.5. Protótipo de alta fidelidade (Semana 05 - opcional)
+- Cinza claro (#CCCCCC) e branco suave (#F5F5F5) para equilíbrio e contraste
+
+#### Tipografia:
+
+- Títulos e textos: Fonte Poppins (sans-serif), moderna e legível
+
+- Logo: Fonte personalizada Lostar, com estilo marcante e festivo
+
+####  Componentes visuais:
+
+- Botões com gradiente roxo e bordas arredondadas
+
+- Cards e seções com sombreamento e cores escuras vibrantes
+
+- Sidebar vertical com transições suaves
+
+Este conjunto visual reforça a proposta do THX Hub como um ambiente digital descontraído, porém organizado, voltado à gestão de eventos informais com estilo e personalidade.
+
+### 2.5. Protótipo de alta fidelidade (Semana 05 - opcional)
 
 *Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).*
 
-### 3.6. WebAPI e endpoints (Semana 05)
+### 2.6. WebAPI e endpoints (Semana 05)
 
 #### Usuários (`/usuarios`)
 
@@ -210,29 +215,28 @@ Essa estrutura modular facilita a gestão dos dados, assegurando a clara separa�
 | DELETE | `/:id_usuario/:id_evento`        | Remove um organizador específico de um evento                  |
 
 
-### 3.7 Interface e Navegação (Semana 07)
+### 2.7 Interface e Navegação (Semana 07)
 
 *Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
 
 ---
 
-## <a name="c4"></a>4. Desenvolvimento da Aplicação Web (Semana 8)
+## <a name="c4"></a>3. Desenvolvimento da Aplicação Web (Semana 8)
 
-### 4.1 Demonstração do Sistema Web (Semana 8)
+### 3.1 Demonstração do Sistema Web (Semana 8)
 
 *VIDEO: Insira o link do vídeo demonstrativo nesta seção*
 *Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
 
-### 4.2 Conclusões e Trabalhos Futuros (Semana 8)
+### 3.2 Conclusões e Trabalhos Futuros (Semana 8)
 
 *Indique pontos fortes e pontos a melhorar de maneira geral.*
 *Relacione também quaisquer outras ideias que você tenha para melhorias futuras.*
 
 
 
-## <a name="c5"></a>5. Referências
+## <a name="c5"></a>4. Referências
 
 _Incluir as principais referências de seu projeto, para que o leitor possa consultar caso ele se interessar em aprofundar._<br>
 
----
 ---

@@ -13,7 +13,7 @@
 
 <br>
 
-## <a name="c1"></a>1. Introdução (Semana 01)
+## <a name="c1"></a>1. Introdução
 
 THX Hub é uma plataforma web desenvolvida com o objetivo de facilitar o gerenciamento de eventos pessoais, com foco especial nas “resenhas” – festas informais realizadas em casa ou no condomínio, geralmente com amigos mais próximos. A necessidade de centralizar a organização desses eventos de forma prática e eficiente tornou-se cada vez mais urgente, motivada por uma demanda real observada no cotidiano do autor do projeto e seus colegas. Essa organização engloba fatores como lista de convidados, confirmação de presenças e exibição de informações essenciais.
 Com uma interface simplificada e intuitiva, o THX Hub permite que você crie um evento e defina seus principais detalhes essenciais: local, data, hora, descrição e regras. A partir dessas informações, um link de inscrição é gerado para ser facilmente compartilhado com seus convidados. Esse sistema foi pensado para promover a organização e garantir o limite de participantes adequado à capacidade do ambiente.
@@ -109,18 +109,51 @@ Representa as mensagens enviadas por usuários dentro de eventos, permitindo a c
 Essa estrutura modular facilita a gestão dos dados, assegurando a clara separação entre entidades e seus relacionamentos na plataforma.
 
 
-### 2.2. Arquitetura (Semana 5)
+### 2.2. Arquitetura
 
-*Posicione aqui o diagrama de arquitetura da sua solução de aplicação web. Atualize sempre que necessário.*
+O THX Hub adota uma arquitetura baseada no padrão MVC (Model-View-Controller), distribuída em três principais camadas: Cliente, Servidor e Banco de Dados. A aplicação foi implementada com foco na organização modular e na separação de responsabilidades, garantindo manutenibilidade e escalabilidade.
 
-**Instruções para criação do diagrama de arquitetura**  
-- **Model**: A camada que lida com a lógica de negócios e interage com o banco de dados.
-- **View**: A camada responsável pela interface de usuário.
-- **Controller**: A camada que recebe as requisições, processa as ações e atualiza o modelo e a visualização.
-  
-*Adicione as setas e explicações sobre como os dados fluem entre o Model, Controller e View.*
+<div align="center">
+   <sub>Imagem 2: Diagrama de arquitetura </sub><br>
+   <img src="../assets/wad/diagramaAqruitetura.svg" width="100%" 
+   alt="Diagrama de arquitetura"><br>
+   <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
+ </div>
 
-### 2.4. Guia de estilos
+#### Cliente
+
+O cliente é composto pela interface gráfica acessada via navegador, desenvolvida com HTML, CSS e a engine de templates EJS. A partir dela, o usuário interage com o sistema realizando ações como visualizar eventos, confirmar presença e enviar mensagens.
+
+#### Servidor
+
+O lado do servidor, hospedado na Render, é estruturado em três subcamadas:
+
+- **Views**: arquivos `.ejs` que geram dinamicamente a interface exibida ao usuário.
+- **Controllers**: tratam as requisições HTTP, invocam os serviços e preparam os dados para renderização.
+- **Service**: aplica regra de negócios e validações às consultas realizadas pelo Repository.
+- **Repository**: realiza consultas SQL e tem acesso direto ao banco de dados.
+- **Models**: representam as entidades da aplicação (usuários, eventos, mensagens etc), sendo usados para validação e consistência.
+
+#### Comunicação interna
+
+1. O Controller recebe uma requisição do cliente.
+2. Acessa dados via Service que chama o Repository.
+3. Envia os dados à View via `res.render`.
+4. A View gera HTML dinâmico e retorna ao navegador.
+
+#### Banco de Dados
+
+O sistema utiliza PostgreSQL hospedado na Render. As tabelas representam os modelos da aplicação, e a comunicação ocorre via consultas SQL executadas nas classes de repositório.
+
+#### Fluxo Geral da Aplicação
+
+Usuário → Cliente (View) → Requisição HTTP → Controller → Service → Repository → Banco de Dados  
+↘︎ Resposta → Controller → View → HTML Renderizado → Cliente
+
+Essa estrutura permite que o THX Hub ofereça uma experiência interativa, modular e facilmente escalável para gerenciamento de eventos pessoais.
+
+
+### 2.3. Guia de estilos
 
 O THX Hub adota uma identidade visual vibrante e noturna, inspirada no universo das festas, com foco em modernidade e clareza. A seguir, estão os principais elementos do seu guia de estilos:
 
@@ -155,11 +188,7 @@ O THX Hub adota uma identidade visual vibrante e noturna, inspirada no universo 
 
 Este conjunto visual reforça a proposta do THX Hub como um ambiente digital descontraído, porém organizado, voltado à gestão de eventos informais com estilo e personalidade.
 
-### 2.5. Protótipo de alta fidelidade (Semana 05 - opcional)
-
-*Posicione aqui algumas imagens demonstrativas de seu protótipo de alta fidelidade e o link para acesso ao protótipo completo (mantenha o link sempre público para visualização).*
-
-### 2.6. WebAPI e endpoints (Semana 05)
+### 2.4. WebAPI e endpoints
 
 #### Usuários (`/usuarios`)
 
@@ -222,7 +251,7 @@ Este conjunto visual reforça a proposta do THX Hub como um ambiente digital des
 | DELETE | `/:id_usuario/:id_evento`        | Remove um organizador específico de um evento                  |
 
 
-### 2.7 Interface e Navegação
+### 2.5. Interface e Navegação
 
 Nesta subseção (2.7), será detalhado o fluxo de navegação desenvolvido para a aplicação, apresentando suas respectivas telas e as relações entre elas.
 
@@ -234,7 +263,7 @@ A princípio, com base no guia de estilos, foi customizado e estruturado todo o 
 - Tela de detalhes do evento.
 
 <div align="center">
-   <sub>Imagem 2: Landing page</sub><br>
+   <sub>Imagem 3: Landing page</sub><br>
    <img src="../assets/wad/landingPage.png" width="100%" 
    alt="Landing page do THX Hub"><br>
    <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
@@ -242,14 +271,14 @@ A princípio, com base no guia de estilos, foi customizado e estruturado todo o 
 A landing page foi pensada para ser convidativa, com uma pequena descrição que atrai os usuários e três botões. O botão "Começar agora!" direciona diretamente para a home page do aplicativo. Atualmente, os botões de "cadastro" e "login" ainda estão em desenvolvimento e não possuem funcionalidade.
 
  <div align="center">
-   <sub>Imagem 3: Home page</sub><br>
+   <sub>Imagem 4: Home page</sub><br>
    <img src="../assets/wad/homePage.png" width="100%" 
    alt="Home page do THX Hub"><br>
    <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
  </div>
 
   <div align="center">
-   <sub>Imagem 4: Home page</sub><br>
+   <sub>Imagem 5: Home page</sub><br>
    <img src="../assets/wad/homePage2.png" width="100%" 
    alt="Home page do THX Hub"><br>
    <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
@@ -258,7 +287,7 @@ A landing page foi pensada para ser convidativa, com uma pequena descrição que
 A home page oferece uma barra de navegação intuitiva que permite acesso rápido às principais seções do aplicativo: criação de eventos, eventos disponíveis e uma aba de FAQ (Perguntas Frequentes). No conteúdo principal, você encontrará dicas úteis para organizar seus eventos e uma seção destacando as funcionalidades do THX Hub. Para otimizar a experiência, um atalho para a criação de eventos está visível no início da página, facilitando o acesso rápido.
 
   <div align="center">
-   <sub>Imagem 5: Tela de criação de eventos</sub><br>
+   <sub>Imagem 6: Tela de criação de eventos</sub><br>
    <img src="../assets/wad/criarEvento.png" width="100%" 
    alt="Tela de criação de eventos"><br>
    <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
@@ -266,7 +295,7 @@ A home page oferece uma barra de navegação intuitiva que permite acesso rápid
 Nesta tela, você pode inserir todas as informações essenciais do seu evento, que serão exibidas para que outros usuários possam interagir. Ela inclui campos para título, descrição, local, data e hora de início, data e hora final, e limite de convidados.
 
   <div align="center">
-   <sub>Imagem 6: Tela de eventos disponíveis</sub><br>
+   <sub>Imagem 7: Tela de eventos disponíveis</sub><br>
    <img src="../assets/wad/eventosOn.png" width="100%" 
    alt="Home page do THX Hub"><br>
    <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
@@ -274,7 +303,7 @@ Nesta tela, você pode inserir todas as informações essenciais do seu evento, 
 Aqui, as informações principais de cada evento ativo são apresentadas. Os nomes dos eventos são clicáveis, permitindo que os usuários acessem detalhes adicionais. O botão "voltar" redireciona para a tela de exibição de eventos, e o botão "Criar novo evento" leva o usuário diretamente para a tela de criação já mencionada (Imagem 5), agilizando o processo.
 
   <div align="center">
-   <sub>Imagem 7: Tela de detalhes do evento</sub><br>
+   <sub>Imagem 8: Tela de detalhes do evento</sub><br>
    <img src="../assets/wad/detalhesEvento.png" width="100%" 
    alt="Home page do THX Hub"><br>
    <sup>Fonte: THX Hub, 2025 (Autoral)</sup>

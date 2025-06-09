@@ -215,9 +215,72 @@ Este conjunto visual reforça a proposta do THX Hub como um ambiente digital des
 | DELETE | `/:id_usuario/:id_evento`        | Remove um organizador específico de um evento                  |
 
 
-### 2.7 Interface e Navegação (Semana 07)
+### 2.7 Interface e Navegação
 
-*Descreva e ilustre aqui o desenvolvimento do frontend do sistema web, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
+Nesta subseção (2.7), será detalhado o fluxo de navegação desenvolvido para a aplicação, apresentando suas respectivas telas e as relações entre elas.
+
+A princípio, com base no guia de estilos, foi customizado e estruturado todo o front-end do THX Hub. Essa camada de interface com o usuário, que exibe informações do back-end (consultas ao banco de dados e validações), foi projetada para facilitar o monitoramento e a criação de eventos no WebApp. Para isso, as seguintes telas foram desenvolvidas:
+- Landing page
+- Home page
+- Tela de criação de eventos
+- Tela de eventos disponíveis
+- Tela de detalhes do evento.
+
+<div align="center">
+   <sub>Imagem 2: Landing page</sub><br>
+   <img src="../assets/wad/landingPage.png" width="100%" 
+   alt="Landing page do THX Hub"><br>
+   <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
+ </div>
+A landing page foi pensada para ser convidativa, com uma pequena descrição que atrai os usuários e três botões. O botão "Começar agora!" direciona diretamente para a home page do aplicativo. Atualmente, os botões de "cadastro" e "login" ainda estão em desenvolvimento e não possuem funcionalidade.
+
+ <div align="center">
+   <sub>Imagem 3: Home page</sub><br>
+   <img src="../assets/wad/homePage.png" width="100%" 
+   alt="Home page do THX Hub"><br>
+   <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
+ </div>
+
+  <div align="center">
+   <sub>Imagem 4: Home page</sub><br>
+   <img src="../assets/wad/homePage2.png" width="100%" 
+   alt="Home page do THX Hub"><br>
+   <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
+ </div>
+
+A home page oferece uma barra de navegação intuitiva que permite acesso rápido às principais seções do aplicativo: criação de eventos, eventos disponíveis e uma aba de FAQ (Perguntas Frequentes). No conteúdo principal, você encontrará dicas úteis para organizar seus eventos e uma seção destacando as funcionalidades do THX Hub. Para otimizar a experiência, um atalho para a criação de eventos está visível no início da página, facilitando o acesso rápido.
+
+  <div align="center">
+   <sub>Imagem 5: Tela de criação de eventos</sub><br>
+   <img src="../assets/wad/criarEvento.png" width="100%" 
+   alt="Tela de criação de eventos"><br>
+   <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
+ </div>
+Nesta tela, você pode inserir todas as informações essenciais do seu evento, que serão exibidas para que outros usuários possam interagir. Ela inclui campos para título, descrição, local, data e hora de início, data e hora final, e limite de convidados.
+
+  <div align="center">
+   <sub>Imagem 6: Tela de eventos disponíveis</sub><br>
+   <img src="../assets/wad/eventosOn.png" width="100%" 
+   alt="Home page do THX Hub"><br>
+   <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
+ </div>
+Aqui, as informações principais de cada evento ativo são apresentadas. Os nomes dos eventos são clicáveis, permitindo que os usuários acessem detalhes adicionais. O botão "voltar" redireciona para a tela de exibição de eventos, e o botão "Criar novo evento" leva o usuário diretamente para a tela de criação já mencionada (Imagem 5), agilizando o processo.
+
+  <div align="center">
+   <sub>Imagem 7: Tela de detalhes do evento</sub><br>
+   <img src="../assets/wad/detalhesEvento.png" width="100%" 
+   alt="Home page do THX Hub"><br>
+   <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
+ </div>
+Cada evento possui uma estrutura detalhada, organizada da seguinte forma:
+
+- Um primeiro bloco com os dados principais inseridos na criação do evento.
+- Um painel de mensagens, que serve como um facilitador crucial para a comunicação entre os participantes.
+- Uma seção dedicada aos convidados do evento e seu status de confirmação.
+- Uma aba que exibe o(s) organizador(es) do evento.
+- Uma lista com todos os usuários cadastrados no THX Hub, para facilitar o envio de convites.
+
+Este mapeamento do fluxo de navegação e das telas do THX Hub evidencia uma abordagem centrada no usuário, com o objetivo de simplificar a criação e o acesso a eventos, tornando esse processo algo muito mais simples e intuitivo!
 
 ---
 

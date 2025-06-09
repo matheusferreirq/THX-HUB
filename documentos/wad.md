@@ -124,6 +124,13 @@ Essa estrutura modular facilita a gestão dos dados, assegurando a clara separa�
 
 O THX Hub adota uma identidade visual vibrante e noturna, inspirada no universo das festas, com foco em modernidade e clareza. A seguir, estão os principais elementos do seu guia de estilos:
 
+<div align="center">
+   <sub>Imagem 7: Guia de estilos do THX HUB</sub><br>
+   <img src="../assets/wad/styleGuide.png" width="75%" 
+   alt="Guia de estilos do THX HUB"><br>
+   <sup>Fonte: THX Hub, 2025 (Autoral)</sup>
+ </div>
+
 #### Paleta de Cores:
 
 - Roxo profundo (#351D5E) e roxo neon (#9A5AFF) como tons principais

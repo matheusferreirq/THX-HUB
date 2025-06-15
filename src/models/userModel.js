@@ -8,7 +8,7 @@ class Usuarios {
         email: Joi.string().email().required(),
         senha: Joi.string().min(6).required(),
         apelido_eventual: Joi.optional().allow('')
-    }).unknown(true); // Permite campos adicionais
+    }).unknown(true);
   }
 }
 

@@ -1,24 +1,41 @@
-const eventosRepository = require('../repositories/eventRepository')
+const Joi = require('joi');
+const eventosRepository = require('../repositories/eventRepository');
+const EventModel = require('../models/eventModel');
 
 class EventoService {
-    getAll() {
+    async getAll() {
         return eventosRepository.findAll();
-    };
+    }
 
-    getById(id) {
+    async getById(id) {
+        const { error } = Joi.number().integer().positive().validate(id);
+        if (error) throw new Error(`ID inválido: ${error.message}`);
+
         return eventosRepository.findById(id);
     }
 
-    create(data) {
-        return eventosRepository.create(data);
+    async create(data) {
+        const { error, value } = EventModel.schema.validate(data);
+        if (error) throw new Error(`Erro de validação: ${error.message}`);
+
+        return eventosRepository.create(value);
     }
 
-    update(id, data) {
-        return eventosRepository.update(id,data);
+    async update(id, data) {
+        const { error: idError } = Joi.number().integer().positive().validate(id);
+        if (idError) throw new Error(`ID inválido: ${idError.message}`);
+
+        const { error, value } = EventModel.schema.validate(data);
+        if (error) throw new Error(`Erro de validação: ${error.message}`);
+
+        return eventosRepository.update(id, value);
     }
 
-    delete(id) {
-        return eventosRepository.delete(id)
+    async delete(id) {
+        const { error } = Joi.number().integer().positive().validate(id);
+        if (error) throw new Error(`ID inválido: ${error.message}`);
+
+        return eventosRepository.delete(id);
     }
 }
 

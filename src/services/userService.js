@@ -17,6 +17,13 @@ class userService {
     return userRepository.findById(id);
   }
 
+  async findByEmail(email) {
+    const { error } = Joi.string().email().required().validate(email);
+    if (error) throw new Error(`Email inválido: ${error.message}`);
+
+    return userRepository.findByEmail(email);
+  }
+
   async create(data) {
     const { error, value } = userModel.schema.validate(data);
     if (error) throw new Error(`Erro de validação: ${error.message}`);

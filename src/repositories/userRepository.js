@@ -13,6 +13,12 @@ class UserRepository {
         return result.rows[0];
     };
 
+    async findByEmail(email) {
+        const result = await db.query('SELECT * FROM usuarios WHERE email = $1', [email]);
+        if (result.rows.length === 0) return null;
+        return result.rows[0];
+    };
+
     async create(usuario) {
         const { username, nome, email, senha } = usuario;
         const result = await db.query(

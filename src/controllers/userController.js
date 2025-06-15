@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const userService = require('../services/userService');
 
 const getAll = async (req, res) => {
@@ -15,6 +16,75 @@ const getById = async (req, res) => {
 const create = async (req, res) => {
   const user = await userService.create(req.body);
   res.status(201).json(user);
+};
+
+const register = async (req, res) => {
+  try {
+    const { username, nome, email, senha } = req.body;
+    
+    const existingUser = await userService.findByEmail(email);
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email já está em uso' });
+    }
+
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(senha, saltRounds);
+
+    const userData = {
+      username,
+      nome,
+      email,
+      senha: hashedPassword
+    };
+
+    const user = await userService.create(userData);
+    
+    const { senha: _, ...userWithoutPassword } = user;
+    
+    res.status(201).json({ 
+      message: 'Usuário cadastrado com sucesso',
+      user: userWithoutPassword 
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Erro ao cadastrar usuário', error: error.message });
+  }
+};
+
+const login = async (req, res) => {
+  try {
+    const { email, senha } = req.body;
+
+    // Buscar usuário por email
+    const user = await userService.findByEmail(email);
+    if (!user) {
+      return res.status(401).json({ message: 'Email ou senha inválidos' });
+    }
+
+    // Verificar senha
+    const isPasswordValid = await bcrypt.compare(senha, user.senha);
+    if (!isPasswordValid) {
+      return res.status(401).json({ message: 'Email ou senha inválidos' });
+    }
+
+    // Remover senha do retorno
+    const { senha: _, ...userWithoutPassword } = user;
+
+    res.json({ 
+      message: 'Login realizado com sucesso',
+      user: userWithoutPassword 
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Erro ao fazer login', error: error.message });
+  }
+};
+
+const showRegisterPage = (req, res) => {
+  res.render('register', { title: 'Cadastro - THX Hub' });
+};
+
+// Renderizar página de login
+const showLoginPage = (req, res) => {
+  res.render('login', { title: 'Login - THX Hub' });
 };
 
 const updateNome = async (req, res) => {
@@ -54,9 +124,14 @@ const updateSenha = async (req, res) => {
   const { senha } = req.body;
 
   try {
-    const user = await userService.updateSenha(id, senha);
+    // Hash da nova senha
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(senha, saltRounds);
+    
+    const user = await userService.updateSenha(id, hashedPassword);
     if (user) {
-      res.json(user);
+      const { senha: _, ...userWithoutPassword } = user;
+      res.json(userWithoutPassword);
     } else {
       res.status(404).json({ message: 'Usuário não encontrado' });
     }
@@ -83,17 +158,22 @@ const updateApelido = async (req, res) => {
 
 const remove = async (req, res) => {
   const { id } = req.params;
-  await userService.deleteUser(id);
-  res.status(204).send();;
+  await userService.delete(id);
+  res.status(204).send();
 };
 
 module.exports = {
   getAll,
   getById,
   create,
+  register,
+  login,
+  showRegisterPage,
+  showLoginPage,
   updateNome,
   updateEmail,
   updateApelido,
   updateSenha, 
   remove
 };
+

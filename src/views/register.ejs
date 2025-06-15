@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= title %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js" integrity="sha512-u3fPA7s6QqZqgINuGjjxvyYJzTHb+eU3aCrdOzfsKFhFt8kWsd2SMP4pAu8Vr2VDxBjvXtEBjJvJDnYFxgFGe..." crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/styles/authStyle.css"/>
+</head>
+<body>
+  <div class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <img src="/images/thxlogo-white.png" alt="THX HUB Logo" class="logo">
+        <h1>Cadastro</h1>
+        <p>Crie sua conta e comece a organizar eventos incríveis!</p>
+      </div>
+
+      <form id="registerForm" class="auth-form">
+        <div class="form-group">
+          <label for="username">
+            <i class="fas fa-user"></i>
+            Nome de usuário
+          </label>
+          <input type="text" id="username" name="username" required>
+          <span class="error-message" id="usernameError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="nome">
+            <i class="fas fa-id-card"></i>
+            Nome completo
+          </label>
+          <input type="text" id="nome" name="nome" required>
+          <span class="error-message" id="nomeError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">
+            <i class="fas fa-envelope"></i>
+            Email
+          </label>
+          <input type="email" id="email" name="email" required>
+          <span class="error-message" id="emailError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="senha">
+            <i class="fas fa-lock"></i>
+            Senha
+          </label>
+          <input type="password" id="senha" name="senha" required>
+          <span class="error-message" id="senhaError"></span>
+          <div class="password-requirements">
+            <small>A senha deve ter pelo menos 6 caracteres</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmSenha">
+            <i class="fas fa-lock"></i>
+            Confirmar senha
+          </label>
+          <input type="password" id="confirmSenha" name="confirmSenha" required>
+          <span class="error-message" id="confirmSenhaError"></span>
+        </div>
+
+        <button type="submit" class="auth-btn">
+          <i class="fas fa-user-plus"></i>
+          Criar conta
+        </button>
+      </form>
+
+      <div class="auth-footer">
+        <p>Já tem uma conta? <a href="/login">Faça login</a></p>
+      </div>
+    </div>
+
+    <div class="auth-background">
+      <div class="floating-element element-1"></div>
+      <div class="floating-element element-2"></div>
+      <div class="floating-element element-3"></div>
+    </div>
+  </div>
+
+  <div id="successModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="fas fa-check-circle success-icon"></i>
+        <h2>Cadastro realizado com sucesso!</h2>
+      </div>
+      <div class="modal-body">
+        <p>Sua conta foi criada. Você será redirecionado para a página de login.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // Limpar mensagens de erro anteriores
+      clearErrors();
+      
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      
+      // Validações do frontend
+      if (!validateForm(data)) {
+        return;
+      }
+      
+      try {
+        const response = await fetch('/api/users/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username: data.username,
+            nome: data.nome,
+            email: data.email,
+            senha: data.senha
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (response.ok) {
+          // Mostrar modal de sucesso
+          document.getElementById('successModal').style.display = 'flex';
+          
+          // Redirecionar após 2 segundos
+          setTimeout(() => {
+            window.location.href = '/login';
+          }, 2000);
+        } else {
+          // Mostrar erro do servidor
+          if (result.message) {
+            showError('email', result.message);
+          }
+        }
+      } catch (error) {
+        console.error('Erro:', error);
+        showError('email', 'Erro de conexão. Tente novamente.');
+      }
+    });
+    
+    function validateForm(data) {
+      let isValid = true;
+      
+      // Validar username
+      if (data.username.length < 3) {
+        showError('username', 'Nome de usuário deve ter pelo menos 3 caracteres');
+        isValid = false;
+      }
+      
+      // Validar nome
+      if (data.nome.length < 2) {
+        showError('nome', 'Nome deve ter pelo menos 2 caracteres');
+        isValid = false;
+      }
+      
+      // Validar email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        showError('email', 'Email inválido');
+        isValid = false;
+      }
+      
+      // Validar senha
+      if (data.senha.length < 6) {
+        showError('senha', 'Senha deve ter pelo menos 6 caracteres');
+        isValid = false;
+      }
+      
+      // Validar confirmação de senha
+      if (data.senha !== data.confirmSenha) {
+        showError('confirmSenha', 'Senhas não coincidem');
+        isValid = false;
+      }
+      
+      return isValid;
+    }
+    
+    function showError(fieldName, message) {
+      const errorElement = document.getElementById(fieldName + 'Error');
+      if (errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = 'block';
+      }
+    }
+    
+    function clearErrors() {
+      const errorElements = document.querySelectorAll('.error-message');
+      errorElements.forEach(element => {
+        element.textContent = '';
+        element.style.display = 'none';
+      });
+    }
+  </script>
+</body>
+</html>
+

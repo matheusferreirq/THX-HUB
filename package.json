@@ -8,7 +8,8 @@
     "dev": "nodemon server.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "migration": "node ./src/scripts/runSQLScript.js"
+    "migration": "node ./src/scripts/runSQLScript.js",
+    "seeds": "node ./src/scripts/runSQLScript.js"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

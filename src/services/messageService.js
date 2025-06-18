@@ -4,6 +4,7 @@ const userRepository = require('../repositories/userRepository');
 const eventRepository = require('../repositories/eventRepository');
 const organizerRepository = require('../repositories/organizerRepository');
 const messageModel = require('../models/messageModel');
+const userService = require('./userService');
 
 class messageService {
     async getAllMensagens(id_evento) {
@@ -25,7 +26,7 @@ class messageService {
         const evento = await eventRepository.findById(id_evento);
         if (!evento) throw new Error('Evento não encontrado');
 
-        const user = await userRepository.findById(id_usuario);
+        const user = await userService.getById(id_usuario);
         if (!user) throw new Error('Usuário não encontrado');
 
         return messageRepository.create({ conteudo, id_evento, id_usuario });

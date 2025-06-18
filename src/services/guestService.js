@@ -40,10 +40,9 @@ class GuestService {
         this.validateId(id_convidado);
         this.validateId(id_evento);
 
-        const convidados = await guestRepository.getAllByEvento(id_evento);
-        const convidado = convidados.find(c => c.username && c.id === id_convidado);
-
+        const convidado = await guestRepository.findByEventoAndConvidado(id_evento, id_convidado);
         if (!convidado) throw new Error('Usuário não foi convidado para este evento');
+        
 
         const confirmados = await guestRepository.getAllConfirmados(id_evento);
         const evento = await eventRepository.findById(id_evento);

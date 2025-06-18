@@ -1,5 +1,4 @@
 const db = require('../config/db');
-const Usuarios = require('../models/userModel')
 
 class UserRepository {
     async findAll() {
@@ -9,9 +8,9 @@ class UserRepository {
 
     async findById(id) {
         const result = await db.query('SELECT * FROM usuarios WHERE id = $1', [id]);
-        if (result.rows.length === 0) return null;
+        if (result.rows.length === 0) return null; 
         return result.rows[0];
-    };
+    }
 
     async findByEmail(email) {
         const result = await db.query('SELECT * FROM usuarios WHERE email = $1', [email]);

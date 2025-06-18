@@ -12,5 +12,6 @@ router.put('/:id/nome', userController.updateNome);
 router.put('/:id/senha', userController.updateSenha);
 router.put('/:id/email', userController.updateEmail);
 router.delete('/:id', userController.remove);
+router.post('/logout', userController.logout);
 
 module.exports = router;

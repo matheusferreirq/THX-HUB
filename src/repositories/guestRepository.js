@@ -41,6 +41,15 @@ class GuestRepository {
             [id_convidado, id_evento]
         );
     };
+
+    async findByEventoAndConvidado(id_evento, id_convidado) {
+    const result = await db.query(
+        'SELECT * FROM convidados_evento WHERE id_evento = $1 AND id_convidado = $2',
+        [id_evento, id_convidado]
+    );
+    if (result.rows.length === 0) return null;
+    return result.rows[0];
+}
 }
 
 module.exports = new GuestRepository()

@@ -17,9 +17,13 @@ const getById = async (req, res) => {
 };
 
 const create = async (req, res) => {
-    const usuarioId = 1; 
+    const usuarioId = req.session && req.session.user && req.session.user.id;
+    if (!usuarioId) {
+        return res.status(401).send('Usuário não autenticado.');
+    }
     try {
         const evento = await eventService.create(req.body);
+        
         await organizerService.create({
             id_usuario: usuarioId,
             id_evento: evento.id,
@@ -75,7 +79,8 @@ const viewDetails = async (req, res) => {
             evento: evento,
             convidados: convidados,
             mensagens: mensagens,
-            usuarios: usuarios
+            usuarios: usuarios,
+            usuarioLogado: req.session.user,
         });
     } catch (error){
         res.status(500).send('Erro ao carregar detalhes do evento: ' + error.message);

@@ -21,9 +21,12 @@ const invite = async (req, res) => {
     else res.status(404).json({ message: "Evento ou usuário não encontrados" });
 }
 
-
 const confirmAttendence = async (req, res) => {
-    const { id_convidado, id_evento } = req.params;
+    const { id_evento } = req.params;
+    const id_convidado = req.session && req.session.user && req.session.user.id;
+    if (!id_convidado) {
+        return res.status(401).json({ message: "Usuário não autenticado" });
+    }
     const confirmacao = await guestService.confirmAttendence(id_convidado, id_evento);
     if (confirmacao) res.json(confirmacao);
     else res.status(404).json({ message: "Evento ou usuário não encontrados" });

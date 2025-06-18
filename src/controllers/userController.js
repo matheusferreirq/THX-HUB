@@ -21,18 +21,14 @@ const create = async (req, res) => {
 const register = async (req, res) => {
   try {
     const { username, nome, email, senha } = req.body;
-    console.log("pegando reqbody: ", req.body)
     
     const existingUser = await userService.findByEmail(email);
     if (existingUser) {
-      console.log('já tem usuario')
       return res.status(400).json({ message: 'Email já está em uso' });
     }
 
     const saltRounds = 10;
-    console.log('defini hash')
     const hashedPassword = await bcrypt.hash(senha, saltRounds);
-    console.log('criptografei a senha')
 
     const userData = {
       username,
@@ -40,10 +36,8 @@ const register = async (req, res) => {
       email,
       senha: hashedPassword
     };
-    console.log('encapsulei os dados', userData)
 
     const user = await userService.create(userData);
-    console.log('chamei a funçao de cadastrar')
     
     const { senha: _, ...userWithoutPassword } = user;
     
@@ -60,19 +54,22 @@ const login = async (req, res) => {
   try {
     const { email, senha } = req.body;
 
-    // Buscar usuário por email
     const user = await userService.findByEmail(email);
     if (!user) {
       return res.status(401).json({ message: 'Email ou senha inválidos' });
     }
 
-    // Verificar senha
     const isPasswordValid = await bcrypt.compare(senha, user.senha);
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Email ou senha inválidos' });
     }
 
-    // Remover senha do retorno
+    req.session.user = {
+      id: user.id,
+      nome: user.nome,
+      email: user.email
+    };
+
     const { senha: _, ...userWithoutPassword } = user;
 
     res.json({ 
@@ -84,11 +81,19 @@ const login = async (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).json({ message: 'Erro ao fazer logout' });
+    }
+    res.redirect('/');
+  });
+};
+
 const showRegisterPage = (req, res) => {
   res.render('register', { title: 'Cadastro - THX Hub' });
 };
 
-// Renderizar página de login
 const showLoginPage = (req, res) => {
   res.render('login', { title: 'Login - THX Hub' });
 };
@@ -130,7 +135,6 @@ const updateSenha = async (req, res) => {
   const { senha } = req.body;
 
   try {
-    // Hash da nova senha
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(senha, saltRounds);
     
@@ -174,6 +178,7 @@ module.exports = {
   create,
   register,
   login,
+  logout,
   showRegisterPage,
   showLoginPage,
   updateNome,

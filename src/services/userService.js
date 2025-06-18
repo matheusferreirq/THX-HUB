@@ -12,8 +12,7 @@ class userService {
 
   async getById(id) {
     const { error } = Joi.number().integer().positive().validate(id);
-    if (error) throw new Error(`ID inválido: ${error.message}`);
-
+    if (error) return null;
     return userRepository.findById(id);
   }
 
@@ -25,11 +24,8 @@ class userService {
   }
 
   async create(data) {
-    console.log('chegou chamado no create do userService')
     const { error, value } = userModel.schema.validate(data);
-    console.log('passei aqui oh')
     if (error) {
-      console.log('erro no service')
       throw new Error(`Erro de validação: ${error.message}`);
     }
 

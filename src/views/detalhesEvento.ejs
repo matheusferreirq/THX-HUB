@@ -90,6 +90,9 @@
 
   <script>
     const notification = document.getElementById("notification");
+    const usuarioLogadoId = <%= usuarioLogado ? usuarioLogado.id : 'null' %>;
+
+    
 
     function showNotification(message) {
       notification.textContent = message;
@@ -101,7 +104,7 @@
 
     async function confirmarPresenca() {
       const eventoId = <%= JSON.stringify(evento.id) %>;
-      const convidadoId = 1;
+      const convidadoId = usuarioLogadoId;
 
       try {
         const res = await fetch(`/eventos/${eventoId}/convidados/${convidadoId}/confirmar`, {

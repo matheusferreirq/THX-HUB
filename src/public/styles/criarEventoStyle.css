@@ -9,49 +9,54 @@ body {
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
   color: #f5f5f5;
-  background: linear-gradient(to bottom, #351d5e, #0a0a0a);
+  background: linear-gradient(135deg, #351d5e 0%, #0a0a0a 100%);
   line-height: 1.6;
 }
 
+/* Header */
 .page-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 60px 16px 24px 16px; /* aumentei o padding-top e bottom */
 }
 
 .page-header h1 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin: 0;
+  color: #bfaaff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-self: center;
+  letter-spacing: 2px;
 }
 
+/* Container central */
 .center-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  min-height: calc(100vh - 80px);
-  padding: 40px 20px;
+  align-items: flex-start;
+  min-height: calc(100vh - 180px); /* aumenta o espaço vertical */
+  padding: 60px 20px 40px 20px;    /* aumenta o padding-top e bottom */
   background: transparent;
 }
 
 .content {
-  background: linear-gradient(to right, #24153f, #2d1d4f);
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-  max-width: 500px;
+  position: relative;
+  background: rgba(36, 21, 63, 0.97); /* Fundo sólido para destacar do gradiente do body */
+  border-radius: 18px;
+  padding: 36px 32px;
+  box-shadow: 0 8px 24px rgba(36, 21, 63, 0.25);
+  max-width: 480px;
   width: 100%;
+  animation: fadeIn 0.7s;
 }
 
+/* Formulário */
 .event-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 
 .form-group {
@@ -60,42 +65,63 @@ body {
 }
 
 .form-group label {
-  margin-bottom: 6px;
-  font-weight: bold;
+  margin-bottom: 7px;
+  font-weight: 600;
   color: #bfaaff;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
 }
 
 .form-group input,
 .form-group textarea {
-  padding: 10px;
+  padding: 12px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   background-color: #372764;
   color: #fff;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
+  margin-bottom: 2px;
+  box-shadow: 0 1px 4px rgba(80, 40, 120, 0.10);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  box-shadow: 0 0 2px #b84eff, 0 0 4px #b84eff;
+  box-shadow: 0 0 4px #b84eff, 0 0 8px #b84eff;
   background-color: #4a3089;
 }
 
+.form-group input[type="date"] {
+  color-scheme: dark;
+}
+
+.form-group textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #bfaaff;
+  opacity: 0.8;
+}
+
+/* Botões */
 .button {
-  padding: 0.6rem 1.2rem;
+  padding: 0.7rem 1.5rem;
   border: none;
   border-radius: 30px;
   font-weight: bold;
   color: white;
-  font-size: 1rem;
+  font-size: 1.08rem;
   cursor: pointer;
   background: linear-gradient(135deg, #8e44ec, #b84eff);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(80, 40, 120, 0.18);
+  transition: all 0.3s;
   position: relative;
   overflow: hidden;
+  margin-top: 10px;
 }
 
 .button::after {
@@ -105,9 +131,9 @@ body {
   left: -50%;
   width: 100%;
   height: 300%;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 75%);
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 75%);
   transform: translateY(-50%) rotate(25deg);
-  transition: left 0.5s ease;
+  transition: left 0.5s;
 }
 
 .button:hover::after {
@@ -115,38 +141,38 @@ body {
 }
 
 .button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(80, 40, 120, 0.22);
+  background: linear-gradient(135deg, #b84eff, #8e44ec);
+  color: #24153f;
 }
 
+/* Botão de voltar fixo no topo do container */
 .btn-voltar {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  margin-top: 0;
+  z-index: 10;
   display: inline-block;
-  padding: 10px 20px;
+  padding: 10px 22px;
   background: linear-gradient(135deg, #6200ee, #9a5aff);
   color: white;
   text-decoration: none;
   border-radius: 30px;
   font-weight: bold;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 .btn-voltar:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(135deg, #9a5aff, #6200ee);
+  color: #fff;
 }
 
-@media (max-width: 600px) {
-  .content {
-    padding: 20px;
-  }
-
-  .btn-voltar {
-    font-size: 0.9rem;
-    padding: 8px 16px;
-  }
-}
-
+/* Notificação */
 .notification {
   visibility: hidden;
   min-width: 250px;
@@ -161,8 +187,10 @@ body {
   bottom: 30px;
   transform: translateX(-50%);
   opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s, transform 0.5s;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  font-weight: 600;
+  font-size: 1.05rem;
 }
 
 .notification.show {
@@ -181,4 +209,60 @@ body {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
   }
+}
+
+/* Responsividade */
+@media (max-width: 800px) {
+  .center-container {
+    padding: 36px 4vw 24px 4vw; /* mais espaço em cima e embaixo */
+    min-height: unset;
+  }
+  .content {
+    padding: 22px 8px;
+    max-width: 98vw;
+  }
+  .btn-voltar {
+    top: 12px;
+    left: 12px;
+    font-size: 0.95rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-header {
+    padding: 28px 4vw 12px 4vw; /* mais espaço em cima */
+  }
+  .page-header h1 {
+    font-size: 1.3rem;
+  }
+  .center-container {
+    padding: 18px 2vw 12px 2vw; /* mais espaço em cima e embaixo */
+  }
+  .content {
+    padding: 12px 2vw;
+    border-radius: 10px;
+  }
+  .form-group label {
+    font-size: 0.98rem;
+  }
+  .button, .btn-voltar {
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+  }
+  .notification {
+    padding: 10px;
+    font-size: 0.95rem;
+    border-radius: 18px;
+    bottom: 12px;
+  }
+}
+
+/* Animação de fadeIn */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+body, .content {
+  animation: fadeIn 0.7s;
 }

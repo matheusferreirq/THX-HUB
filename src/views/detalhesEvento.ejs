@@ -8,13 +8,24 @@
   <title>DETALHES - THX HUB</title>
 </head>
 <body>
+  <div id="modal-confirm-delete" class="modal-confirm-delete">
+    <div class="modal-content">
+      <h2>Deletar Evento</h2>
+      <p>Tem certeza que deseja deletar este evento?<br>Essa ação não poderá ser desfeita.</p>
+      <div class="modal-actions">
+        <button id="btn-cancel-delete" class="button small">Cancelar</button>
+        <button id="btn-confirm-delete" class="button btn-delete small">Deletar</button>
+      </div>
+    </div>
+  </div>
+  
   <%const ehOrganizador = organizadores && usuarioLogado && organizadores.some(org => org.id_usuario === usuarioLogado.id);%>
   <div id="notification" class="notification">Mensagem de exemplo</div>
 
-  <header class="page-header">
-    <h1><%= evento.titulo %></h1>
-    <a href="/eventos" class="btn-voltar">← Voltar</a>
-  </header>
+  <div class="page-header">
+    <a href="/eventos" class="btn-voltar">Voltar</a>
+    <h1>DETALHES DO EVENTO</h1>
+  </div>
 
   <main class="main-container">
     <div class="content">

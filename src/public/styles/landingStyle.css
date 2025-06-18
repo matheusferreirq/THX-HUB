@@ -55,15 +55,49 @@ header {
 #hamburger {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   gap: 5px;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(36, 21, 63, 0.92);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  transition: background 0.2s;
+  position: relative;
+  z-index: 1200;
+}
+
+#hamburger:hover {
+  background: #3a256b;
 }
 
 #hamburger .bar {
-  width: 25px;
-  height: 3px;
-  background-color: #f5f5f5;
+  display: block;
+  width: 26px;
+  height: 3.5px;
+  background-color: #fff;
   border-radius: 2px;
+  transition: all 0.35s cubic-bezier(.68, -0.55, .27, 1.55);
+  margin: 3px 0;
+  position: relative;
+}
+
+/* Animação para X */
+#hamburger.active .bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+  background: #bfaaff;
+}
+
+#hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0.5);
+}
+
+#hamburger.active .bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  background: #bfaaff;
 }
 
 main {
@@ -158,16 +192,46 @@ footer {
     position: absolute;
     top: 60px;
     right: 20px;
-    background-color: #24153f;
-    border-radius: 8px;
+    background: linear-gradient(135deg, #2d1d4f 60%, #3a256b 100%);
+    backdrop-filter: blur(2px);
+    border-radius: 18px;
     flex-direction: column;
-    width: 150px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    padding: 10px 0;
+    width: 180px;
+    box-shadow: 0 8px 32px rgba(80, 40, 120, 0.25), 0 2px 8px rgba(0,0,0,0.18);
+    padding: 18px 0 12px 0;
+    border: 1.5px solid #bfaaff;
+    animation: fadeInMenu 0.35s;
+    z-index: 1300;
   }
 
   .nav-links.active {
     display: flex;
+  }
+
+  .nav-links li {
+    margin: 0 0 10px 0;
+    text-align: left;
+    padding-left: 18px;
+  }
+
+  .nav-links li:last-child {
+    margin-bottom: 0;
+  }
+
+  .nav-links li a {
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.08rem;
+    padding: 8px 0;
+    border-radius: 8px;
+    transition: background 0.2s, color 0.2s;
+    display: block;
+  }
+
+  .nav-links li a:hover {
+    background: #bfaaff;
+    color: #24153f;
+    padding-left: 8px;
   }
 
   #hamburger {
@@ -177,4 +241,9 @@ footer {
   #logo img {
     width: 60px;
   }
+}
+
+@keyframes fadeInMenu {
+  from { opacity: 0; transform: translateY(-10px);}
+  to { opacity: 1; transform: translateY(0);}
 }

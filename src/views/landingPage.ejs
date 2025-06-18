@@ -19,10 +19,10 @@
         <li><a href="/cadastro">Cadastro</a></li>
         <li><a href="/login">Login</a></li>
       </ul>
-      <div id="hamburger">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
+      <div id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
       </div>
     </nav>
   </header>
@@ -47,6 +47,8 @@
 
     hamburger.addEventListener('click', () => {
       navLinks.classList.toggle('active');
+      hamburger.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', navLinks.classList.contains('active'));
     });
   </script>
 </body>

@@ -10,6 +10,9 @@
   <link rel="icon" type="image/png" href="/images/favicon.ico" /></head>
 </head>
 <body>
+  <button class="menu-toggle" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </button>
 
   <aside class="sidebar">
     <div class="logo">
@@ -76,6 +79,13 @@
     </section>
 
   </div>
+
+  <script>
+    function toggleMenu() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.classList.toggle('active');
+    }
+  </script>
 
 </body>
 </html>

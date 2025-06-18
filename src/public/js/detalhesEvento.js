@@ -30,10 +30,18 @@ async function confirmarPresenca() {
   }
 }
 
-async function deletarEvento() {
-  const confirmacao = confirm('Tem certeza que deseja deletar este evento? Essa ação não poderá ser desfeita.');
-  if (!confirmacao) return;
+// Mostra o modal de confirmação
+function deletarEvento() {
+  document.getElementById('modal-confirm-delete').classList.add('active');
+}
 
+// Esconde o modal
+function fecharModalDelete() {
+  document.getElementById('modal-confirm-delete').classList.remove('active');
+}
+
+// Confirma a deleção
+async function confirmarDeleteEvento() {
   try {
     const res = await fetch(`/eventos/${eventoId}`, {
       method: 'DELETE'
@@ -51,6 +59,7 @@ async function deletarEvento() {
     console.error(err);
     showNotification("Erro na conexão.");
   }
+  fecharModalDelete();
 }
 
 async function adicionarOrganizador(event) {
@@ -98,3 +107,13 @@ async function convidarUsuario(usuarioId) {
     showNotification("Erro na conexão com o servidor.");
   }
 }
+
+// Eventos dos botões do modal
+document.addEventListener('DOMContentLoaded', function() {
+  const btnCancel = document.getElementById('btn-cancel-delete');
+  const btnConfirm = document.getElementById('btn-confirm-delete');
+  if (btnCancel && btnConfirm) {
+    btnCancel.onclick = fecharModalDelete;
+    btnConfirm.onclick = confirmarDeleteEvento;
+  }
+});

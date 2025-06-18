@@ -25,8 +25,13 @@ class userService {
   }
 
   async create(data) {
+    console.log('chegou chamado no create do userService')
     const { error, value } = userModel.schema.validate(data);
-    if (error) throw new Error(`Erro de validação: ${error.message}`);
+    console.log('passei aqui oh')
+    if (error) {
+      console.log('erro no service')
+      throw new Error(`Erro de validação: ${error.message}`);
+    }
 
     return userRepository.create(value);
   }

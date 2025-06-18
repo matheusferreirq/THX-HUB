@@ -52,10 +52,10 @@ POST http://localhost:3000/usuarios
 Content-Type: application/json
 
 { 
-  "username": "stef.soares",
-  "nome": "Stefanne",
-  "email": "stefanne@gmail.com",
-  "senha": "222222"
+  "username": "maria.eduarda",
+  "nome": "duda",
+  "email": "maria@gmail.com",
+  "senha": "556434534"
 }
 
 ###

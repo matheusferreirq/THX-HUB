@@ -21,14 +21,18 @@ const create = async (req, res) => {
 const register = async (req, res) => {
   try {
     const { username, nome, email, senha } = req.body;
+    console.log("pegando reqbody: ", req.body)
     
     const existingUser = await userService.findByEmail(email);
     if (existingUser) {
+      console.log('já tem usuario')
       return res.status(400).json({ message: 'Email já está em uso' });
     }
 
     const saltRounds = 10;
+    console.log('defini hash')
     const hashedPassword = await bcrypt.hash(senha, saltRounds);
+    console.log('criptografei a senha')
 
     const userData = {
       username,
@@ -36,8 +40,10 @@ const register = async (req, res) => {
       email,
       senha: hashedPassword
     };
+    console.log('encapsulei os dados', userData)
 
     const user = await userService.create(userData);
+    console.log('chamei a funçao de cadastrar')
     
     const { senha: _, ...userWithoutPassword } = user;
     

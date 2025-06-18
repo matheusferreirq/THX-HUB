@@ -1,4 +1,5 @@
 const guestService = require('../services/guestService');
+const organizerService = require('../services/organizerService');
 
 const getAllByEvento = async (req, res) => {
     const { id_evento } = req.params;
@@ -16,9 +17,14 @@ const getAllConfirmados = async (req, res) => {
 const invite = async (req, res) => {
     const { id_evento } = req.params;
     const { id_convidado } = req.body;
+    const usuarioId = req.session && req.session.user && req.session.user.id;
+    const isOrganizer = await organizerService.isOrganizer(usuarioId, id_evento);
+    if (!isOrganizer) {
+        return res.status(403).json({ message: 'Apenas organizadores podem convidar pessoas.' });
+    }
     const convite = await guestService.invite({ id_convidado, id_evento });
     if (convite) res.json(convite);
-    else res.status(404).json({ message: "Evento ou usuário não encontrados" });
+    else res.status(400).json({ message: 'Convite não pôde ser realizado.' });
 }
 
 const confirmAttendence = async (req, res) => {

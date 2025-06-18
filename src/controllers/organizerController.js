@@ -1,4 +1,5 @@
 const organizerService = require('../services/organizerService');
+const userService = require('../services/userService');
 
 const getAll = async (req, res) => {
     const organizers = await organizerService.getAll();
@@ -41,11 +42,37 @@ const deleteByUsuarioAndEvent = async (req, res) => {
     res.status(204).send();
 }
 
+const addOrganizer = async (req, res) => {
+    const { id_evento } = req.params;
+    const { username, papel } = req.body;
+    const usuarioId = req.session && req.session.user && req.session.user.id;
+
+    // Só organizadores podem adicionar outros organizadores
+    const isOrganizer = await organizerService.isOrganizer(usuarioId, id_evento);
+    if (!isOrganizer) {
+        return res.status(403).json({ message: 'Apenas organizadores podem adicionar outros organizadores.' });
+    }
+
+    const user = await userService.findByUsername(username);
+    if (!user) {
+        return res.status(404).json({ message: 'Usuário não encontrado.' });
+    }
+
+    const novoOrganizador = await organizerService.create({
+        id_usuario: user.id,
+        id_evento,
+        papel
+    });
+
+    res.json(novoOrganizador);
+};
+
 module.exports = {
     getAll,
     getByUsuario,
     getByEvento,
     create,
     updatePapel,
-    deleteByUsuarioAndEvent
+    deleteByUsuarioAndEvent,
+    addOrganizer
 }

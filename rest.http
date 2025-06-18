@@ -52,10 +52,10 @@ POST http://localhost:3000/usuarios
 Content-Type: application/json
 
 { 
-  "username": "maria.eduarda",
-  "nome": "duda",
-  "email": "maria@gmail.com",
-  "senha": "556434534"
+  "username": "stef.soares",
+  "nome": "Stef",
+  "email": "stefanne.soares@sou.inteli.edu.br",
+  "senha": "12345"
 }
 
 ###
@@ -126,9 +126,9 @@ POST http://localhost:3000/organizadores
 Content-Type: application/json
 
 {
-  "papel": "coordenador",
-  "id_usuario": 5,
-  "id_evento": 5
+  "papel": "coordenadorA",
+  "id_usuario": 1,
+  "id_evento": 2
 }
 
 ### PUT - ALTERAR PAPEL

@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="/styles/detalhesEvento.css" />
+  <link rel="icon" type="image/png" href="/images/favicon.ico" /></head>
   <title>DETALHES - THX HUB</title>
 </head>
 <body>
+  <%const ehOrganizador = organizadores && usuarioLogado && organizadores.some(org => org.id_usuario === usuarioLogado.id);%>
   <div id="notification" class="notification">Mensagem de exemplo</div>
 
   <header class="page-header">
@@ -17,9 +19,14 @@
   <main class="main-container">
     <div class="content">
       <div class="header-row">
+        <% 
+          const ehCriador = organizadores && usuarioLogado && organizadores.some(org => org.id_usuario === usuarioLogado.id && org.papel === 'Criador');
+        %>
         <div class="button-group">
           <button onclick="confirmarPresenca()" class="button subscribe-button">Confirmar Presença</button>
-          <button onclick="deletarEvento()" class="button btn-delete">Deletar Evento</button>
+          <% if (ehCriador) { %>
+            <button onclick="deletarEvento()" class="button btn-delete">Deletar Evento</button>
+          <% } %>
         </div>
       </div>
 
@@ -64,14 +71,25 @@
       <div class="section">
         <h3>Organizador(es)</h3>
         <ul class="sidebar-list">
-          <% if (evento.organizadores && evento.organizadores.length > 0) { %>
-            <% evento.organizadores.forEach(o => { %>
-              <li><%= o.primeiro_nome %> (@<%= o.username %>)</li>
+          <% if (organizadores && organizadores.length > 0) { %>
+            <% organizadores.forEach(o => { %>
+              <li>
+                <%= o.primeiro_nome %> (@<%= o.username %>)
+                <span class="papel-organizador">[<%= o.papel %>]</span>
+              </li>
             <% }) %>
           <% } else { %>
             <li>Nenhum organizador encontrado.</li>
           <% } %>
         </ul>
+
+        <% if (ehOrganizador) { %>
+          <form id="formAddOrganizer" class="add-organizer-form" onsubmit="return adicionarOrganizador(event)">
+            <input type="text" id="usernameOrganizador" placeholder="Usuário" required>
+            <input type="text" id="papelOrganizador" placeholder="Papel" required>
+            <button type="submit" class="button small">Adicionar Organizador</button>
+          </form>
+        <% } %>
       </div>
 
       <div class="section">
@@ -80,7 +98,9 @@
           <% usuarios.forEach(u => { %>
             <li>
               <%= u.primeiro_nome %> (@<%= u.username %>)
-              <button onclick="convidarUsuario(<%= u.id %>)" class="button small">Convidar</button>
+              <% if (ehOrganizador) { %>
+                <button onclick="convidarUsuario(<%= u.id %>)" class="button small">Convidar</button>
+              <% } %>
             </li>
           <% }) %>
         </ul>
@@ -89,93 +109,9 @@
   </main>
 
   <script>
-    const notification = document.getElementById("notification");
+    const eventoId = <%= evento.id %>;
     const usuarioLogadoId = <%= usuarioLogado ? usuarioLogado.id : 'null' %>;
-
-    
-
-    function showNotification(message) {
-      notification.textContent = message;
-      notification.classList.add("show");
-      setTimeout(() => {
-        notification.classList.remove("show");
-      }, 3000);
-    }
-
-    async function confirmarPresenca() {
-      const eventoId = <%= JSON.stringify(evento.id) %>;
-      const convidadoId = usuarioLogadoId;
-
-      try {
-        const res = await fetch(`/eventos/${eventoId}/convidados/${convidadoId}/confirmar`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-
-        if (res.ok) {
-          showNotification("Presença confirmada!");
-          window.location.reload();
-        } else {
-          const error = await res.json();
-          showNotification(`Erro: ${error.message || 'Não foi possível confirmar'}`);
-        }
-      } catch (err) {
-        console.error(err);
-        showNotification("Erro na conexão.");
-      }
-    }
-
-    async function deletarEvento() {
-      const confirmacao = confirm('Tem certeza que deseja deletar este evento? Essa ação não poderá ser desfeita.');
-      if (!confirmacao) return;
-
-      const eventoId = <%= JSON.stringify(evento.id) %>;
-
-      try {
-        const res = await fetch(`/eventos/${eventoId}`, {
-          method: 'DELETE'
-        });
-
-        if (res.ok) {
-          showNotification("Evento deletado com sucesso!");
-          setTimeout(() => {
-            window.location.href = '/eventos';
-          }, 1500);
-        } else {
-          showNotification("Erro ao deletar evento.");
-        }
-      } catch (err) {
-        console.error(err);
-        showNotification("Erro ao deletar evento.");
-      }
-    }
-
-    async function convidarUsuario(usuarioId) {
-      const eventoId = <%= evento.id %>;
-
-      try {
-        const res = await fetch(`/eventos/${eventoId}/convidados`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ id_convidado: usuarioId })
-        });
-
-        if (res.ok) {
-          showNotification("Usuário convidado com sucesso!");
-          window.location.reload();
-        } else {
-          const error = await res.json();
-          showNotification(`Erro: ${error.message || 'Tente novamente'}`);
-        }
-      } catch (err) {
-        console.error(err);
-        showNotification("Erro na conexão com o servidor.");
-      }
-    }
   </script>
+  <script src="/js/detalhesEvento.js"></script>
 </body>
 </html>

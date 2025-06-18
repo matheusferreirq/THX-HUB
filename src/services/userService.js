@@ -66,6 +66,12 @@ class userService {
 
     return userRepository.delete(id);
   }
+
+  async findByUsername(username) {
+    const { error } = Joi.string().required().validate(username);
+    if (error) throw new Error(`Username inválido: ${error.message}`);
+    return userRepository.findByUsername(username);
+  }
 }
 
 module.exports = new userService();

@@ -8,5 +8,6 @@ router.get('/usuario/:id_usuario', organizerController.getByUsuario);
 router.post('/', organizerController.create);
 router.put('/:id_usuario/:id_evento', organizerController.updatePapel);
 router.delete('/:id_usuario/:id_evento', organizerController.deleteByUsuarioAndEvent);
+router.post('/:id_evento/adicionar', organizerController.addOrganizer);
 
 module.exports = router;

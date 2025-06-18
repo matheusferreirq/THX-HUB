@@ -66,6 +66,17 @@ class OrganizerService {
         return organizerRepository.deleteByUsuarioAndEvent(id_usuario, id_evento);
     }
 
+    async isOrganizer(id_usuario, id_evento) {
+        this.validateId(id_usuario);
+        this.validateId(id_evento);
+        const organizadores = await organizerRepository.findByEvento(id_evento);
+        return !!organizadores?.find(o => o.id_usuario === id_usuario);
+    }
+
+    async findByUsername(username) {
+        return userRepository.findByUsername(username);
+    }
+
     validateId(id) {
         const { error } = Joi.number().integer().positive().validate(id);
         if (error) throw new Error(`ID inválido: ${error.message}`);

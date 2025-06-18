@@ -11,10 +11,14 @@ const getAll = async (req, res) => {
 
 const getById = async (req, res) => {
     const { id } = req.params;
-    const event = await eventService.getById(id);
-    if (event) res.json(event);
-    else res.status(404).json( {message: 'Evento não encontrado'});
-};
+    const evento = await eventService.getById(id);
+    const organizadores = await organizerService.getByEvento(id);
+    res.render('detalhesEvento', {
+        evento,
+        organizadores: organizadores,
+        usuarioLogado: req.session.user,
+    });
+}
 
 const create = async (req, res) => {
     const usuarioId = req.session && req.session.user && req.session.user.id;
@@ -44,6 +48,15 @@ const update = async (req, res) => {
 
 const remove = async (req, res) => {
     const { id } = req.params;
+    const usuarioId = req.session && req.session.user && req.session.user.id;
+
+    const organizadores = await organizerService.getByEvento(id);
+    const criador = organizadores.find(o => o.papel === 'Criador');
+
+    if (!criador || criador.id_usuario !== usuarioId) {
+        return res.status(403).send('Apenas o criador do evento pode deletá-lo.');
+    }
+
     await eventService.delete(id);
     res.status(204).send();
 }
@@ -81,6 +94,7 @@ const viewDetails = async (req, res) => {
             mensagens: mensagens,
             usuarios: usuarios,
             usuarioLogado: req.session.user,
+            organizadores: organizadores
         });
     } catch (error){
         res.status(500).send('Erro ao carregar detalhes do evento: ' + error.message);

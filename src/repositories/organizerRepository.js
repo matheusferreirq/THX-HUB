@@ -53,6 +53,14 @@ class organizerRepository {
             [id_usuario, id_evento]
         );
     };
+
+    async findByUsuarioAndEvento(id_usuario, id_evento) {
+    const result = await db.query(
+        'SELECT * FROM organizadores_eventos WHERE id_usuario = $1 AND id_evento = $2',
+        [id_usuario, id_evento]
+    );
+    return result.rows[0] || null;
+}
 }
 
 module.exports = new organizerRepository();

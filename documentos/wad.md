@@ -320,22 +320,93 @@ Este mapeamento do fluxo de navegação e das telas do THX Hub evidencia uma abo
 
 ---
 
-## <a name="c4"></a>3. Desenvolvimento da Aplicação Web (Semana 8)
+## <a name="c4"></a>3. Desenvolvimento da Aplicação Web
+### 3.1 Demonstração do Sistema Web
 
-### 3.1 Demonstração do Sistema Web (Semana 8)
+#### Vídeo Demonstrativo
 
-*VIDEO: Insira o link do vídeo demonstrativo nesta seção*
-*Descreva e ilustre aqui o desenvolvimento do sistema web completo, explicando brevemente o que foi entregue em termos de código e sistema. Utilize prints de tela para ilustrar.*
+[Assista ao vídeo demonstrativo do THX Hub aqui.](https://drive.google.com/file/d/1l9CpxYNCzARFqI0_RNtdlYFDRwKUs1Hg/view?usp=sharing)
 
-### 3.2 Conclusões e Trabalhos Futuros (Semana 8)
+#### Tecnologias Utilizadas
 
-*Indique pontos fortes e pontos a melhorar de maneira geral.*
-*Relacione também quaisquer outras ideias que você tenha para melhorias futuras.*
+O THX Hub foi desenvolvido utilizando as seguintes tecnologias:
+
+- **Backend:** Node.js com Express.js, arquitetura MVC, validação de dados com Joi, conexão ao banco de dados via `pg` (PostgreSQL).
+- **Frontend:** HTML, CSS, EJS (Embedded JavaScript Templates) para renderização dinâmica das páginas.
+- **Banco de Dados:** PostgreSQL, modelagem relacional conforme descrito na seção anterior.
+
+#### Processo de Desenvolvimento
+
+O desenvolvimento seguiu o padrão MVC, separando claramente as responsabilidades entre Models, Controllers, Services, Repositories e Views. O backend foi responsável por toda a lógica de negócio, autenticação, controle de eventos, convidados, organizadores e mensagens. O frontend foi construído com EJS, permitindo a renderização dinâmica das informações e uma experiência de navegação fluida.
+
+Os principais desafios envolveram o correto mapeamento das relações N para N no banco de dados, a implementação de regras de negócio para confirmação de presença e limite de convidados, além da integração entre as camadas do sistema.
+
+#### Principais Telas e Funcionalidades
+
+<div align="center">
+  <sub>Imagem 9: Landing page</sub><br>
+  <img src="../assets/wad/landingPage.png" width="90%" alt="Landing page do THX Hub"><br>
+  <sup>Página inicial convidativa, com destaque para o propósito da plataforma e botões de acesso rápido à home, cadastro e login.</sup>
+</div>
+
+<div align="center">
+  <sub>Imagem 10: Home page</sub><br>
+  <img src="../assets/wad/homePage.png" width="90%" alt="Home page do THX Hub"><br>
+  <sup>Exemplo de exibição dinâmica de conteúdo, com destaque para funcionalidades e atalhos rápidos.</sup>
+</div>
+
+<div align="center">
+  <sub>Imagem 11: Tela de criação de eventos</sub><br>
+  <img src="../assets/wad/criarEventoAtt.png" width="90%" alt="Tela de criação de eventos"><br>
+  <sup>Formulário completo para cadastro de novos eventos, incluindo campos para título, descrição, local, datas e limite de convidados.</sup>
+</div>
+
+<div align="center">
+  <sub>Imagem 12: Tela de eventos disponíveis</sub><br>
+  <img src="../assets/wad/eventosOnAtt.png" width="90%" alt="Eventos disponíveis"><br>
+  <sup>Listagem de todos os eventos ativos, com nomes clicáveis para detalhes, botão para criar novo evento e navegação facilitada.</sup>
+</div>
+
+<div align="center">
+  <sub>Imagem 13: Tela de detalhes do evento</sub><br>
+  <img src="../assets/wad/detalhesEventoAtt.png" width="90%" alt="Detalhes do evento"><br>
+  <sup>Visualização detalhada do evento selecionado, incluindo informações principais, painel de mensagens, lista de convidados, organizadores e usuários cadastrados para convite.</sup>
+</div>
 
 
+<div align="center">
+  <sub>Imagem 17: Tela de FAQ</sub><br>
+  <img src="../assets/wad/faq.png" width="90%" alt="Tela de FAQ"><br>
+  <sup>Página de perguntas frequentes, auxiliando usuários com dúvidas comuns sobre o funcionamento da plataforma.</sup>
+</div>
 
-## <a name="c5"></a>4. Referências
+#### Funcionalidades Implementadas
 
-_Incluir as principais referências de seu projeto, para que o leitor possa consultar caso ele se interessar em aprofundar._<br>
+- Criação, edição e exclusão de eventos.
+- Gerenciamento de convidados (convite, confirmação de presença, remoção).
+- Painel de mensagens para comunicação entre participantes.
+- Gestão de organizadores e atribuição de papéis.
+- Interface responsiva e navegação intuitiva.
+- Controle de limite de convidados e atualização em tempo real da lista de confirmados.
+- Confirmação de presença individualizada para convidados.
+- FAQ integrado para suporte ao usuário.
 
----
+O THX Hub está pronto para uso em ambientes de festas informais, promovendo organização, colaboração e uma experiência diferenciada para anfitriões e convidados.
+
+### 3.2 Conclusões e Trabalhos Futuros
+
+O desenvolvimento do THX Hub proporcionou uma experiência prática extremamente rica, que consolidou conhecimentos sobre arquitetura de software, desenvolvimento backend com Node.js, organização de banco de dados relacional e integração com o frontend. A aplicação, atualmente, atende aos requisitos essenciais para o gerenciamento de eventos pessoais, oferecendo funcionalidades como criação de eventos, controle de convidados, confirmação de presença, gestão de organizadores e painel de mensagens.
+
+Durante o desenvolvimento, os principais desafios envolveram o correto mapeamento dos relacionamentos no banco de dados, a implementação de regras de negócio na camada de serviços, bem como a organização de uma arquitetura escalável e de fácil manutenção. Esses desafios foram superados com o uso de boas práticas como a separação clara em camadas (Model, Repository, Service e Controller) e o uso de validações robustas com a biblioteca Joi.
+
+Apesar dos avanços e da aplicação estar funcional, existem pontos de melhoria e diversas possibilidades de expansão que podem ser exploradas nas próximas versões do projeto:
+
+- Tela de perfil de usuário: permitir que cada usuário personalize seu perfil, edite informações pessoais e visualize seu histórico de participação em eventos.
+
+- Sistema de classificação e selos para convidados: funcionalidade planejada que permitirá atribuir status como “Falta Tudo”, “Tá em Todas” ou “Convidado VIP” aos participantes, incentivando o engajamento e tornando a experiência mais divertida.
+
+- Página pública de evento: geração de um link público para que qualquer convidado acesse diretamente os detalhes do evento e confirme presença sem precisar navegar pelo sistema interno.
+
+- Sistema de notificações: alertas automáticos para lembrar os usuários sobre novos eventos, confirmações, alterações de data ou mensagens recebidas.
+
+- Validação de limite de convidados no frontend: atualmente o controle é feito no backend, mas poderia ser reforçado com feedback visual imediato na interface.

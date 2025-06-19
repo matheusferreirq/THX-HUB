@@ -41,10 +41,7 @@ const register = async (req, res) => {
     
     const { senha: _, ...userWithoutPassword } = user;
     
-    res.status(201).json({ 
-      message: 'Usuário cadastrado com sucesso',
-      user: userWithoutPassword 
-    });
+    res.redirect('/login');
   } catch (error) {
     res.status(500).json({ message: 'Erro ao cadastrar usuário', error: error.message });
   }
